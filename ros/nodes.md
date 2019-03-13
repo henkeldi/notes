@@ -23,6 +23,30 @@ while not rospy.is_shutdown():
 </details>
 
 
+<details><summary>C++</summary>
+<p>
+
+```cpp
+#include "ros/ros.h"
+#include "std_msgs/String.h"
+
+ros::init(argc, argv, "talker");
+ros::NodeHandle nh;
+ros::Publisher chatter_pub = nh.advertise<std_msgs::String>("chatter", 1000);
+ros::Rate loop_rate(10);
+while (ros::ok()) {
+    std_msgs::String msg;
+    msg.data = "Hello World";
+    chatter_pub.publish(msg);
+
+    ros::spinOnce();
+    loop_rate.sleep();
+}
+```
+
+</p>
+</details>
+
 ### Subscriber
 
 <details><summary>Python</summary>
