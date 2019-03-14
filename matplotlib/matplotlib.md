@@ -1,7 +1,7 @@
 
 # Matplotlib
 
-![]()
+![Plot-1](./images/plot-1.svg)
 
 <details><summary>Show</summary>
 <p>
