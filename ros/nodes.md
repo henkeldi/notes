@@ -63,7 +63,25 @@ rospy.spin()
 
 </p>
 </details>
+<details><summary>C++</summary>
+<p>
 
+```cpp
+#include "ros/ros.h"
+#include "std_msgs/String.h"
+
+void chatterCallback(const std_msgs::String::ConstPtr& msg) {
+  ROS_INFO("I heard: [%s]", msg->data.c_str());
+}
+
+ros::init(argc, argv, "listener");
+ros::NodeHandle nh;
+ros::Subscriber sub = nh.subscribe("chatter", 1000, chatterCallback);
+ros::spin();
+```
+
+</p>
+</details>
 
 ### Service
 
