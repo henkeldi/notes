@@ -13,7 +13,7 @@ board = cv2.aruco.CharucoBoard_create(squaresX=5,
                                       markerLength=0.02,
                                       dictionary=dictionary)
 
-img = board.draw((600, 500), marginSize=100, borderBits=1)
+img = board.draw((600, 500), marginSize=10, borderBits=1)
 cv2.imwrite('board.png', img)
 ```
 
