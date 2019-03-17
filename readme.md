@@ -21,3 +21,7 @@
 ### Computer Vision
 
 * [Camera Calibration](computer-vision/camera-calibration.md)
+
+### Web development
+
+* [Setup Typescript React Project](web-development/setup-typescript-react-project.md)
