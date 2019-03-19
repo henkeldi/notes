@@ -120,6 +120,8 @@ ros::Subscriber sub = nh.subscribe("chatter", 1000, chatterCallback);
 ros::spin();
 ```
 
+<details>
+
 <details><summary>Kotlin</summary>
 
 ```kotlin
@@ -155,8 +157,6 @@ class SubscriberNode: NodeMain {
     }
 }
 ```
-</details>
-
 </details>
 
 </p>
