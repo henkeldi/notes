@@ -1,7 +1,7 @@
 
 # ROS
 
-### Publisher
+<details><summary>Publisher</summary>
 
 <details><summary>Python</summary>
 <p>
@@ -21,7 +21,6 @@ while not rospy.is_shutdown():
 
 </p>
 </details>
-
 
 <details><summary>C++</summary>
 <p>
@@ -47,7 +46,10 @@ while (ros::ok()) {
 </p>
 </details>
 
-### Subscriber
+</details>
+
+
+<details><summary>Subscriber</summary>
 
 <details><summary>Python</summary>
 <p>
@@ -63,6 +65,7 @@ rospy.spin()
 
 </p>
 </details>
+
 <details><summary>C++</summary>
 <p>
 
@@ -83,7 +86,10 @@ ros::spin();
 </p>
 </details>
 
-### Service
+</details>
+
+
+<details><summary>Service</summary>
 
 <details><summary>Python</summary>
 <p>
@@ -105,7 +111,10 @@ rospy.spin()
 </p>
 </details>
 
-### Service Client
+</details>
+
+
+<details><summary>Service Client</summary>
 
 <details><summary>Python</summary>
 <p>
@@ -126,6 +135,9 @@ def set_bool(data)
 
 </p>
 </details>
+
+</details>
+
 
 ### Source
 [ROS Python Documentation](http://wiki.ros.org/ROS/Tutorials/WritingPublisherSubscriber%28python%29)
