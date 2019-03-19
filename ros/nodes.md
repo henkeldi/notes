@@ -1,8 +1,7 @@
 
 # ROS
 
-<details><summary>Publisher</summary>
-<p>
+<details><summary>Publisher</summary><blockquote><p>
 
 <details><summary>Python</summary>
 
@@ -50,15 +49,8 @@ import org.ros.node.*
 import java.net.URI
 
 fun main(args: Array<String>) {
-    System.setProperty("org.apache.commons.logging.Log",
-        "org.apache.commons.logging.impl.NoOpLog")
-    val rosMasterUri = "http://127.0.0.1:11311"
-    val hostIp = "127.0.0.1"
-
-    val nodeExecutor = DefaultNodeMainExecutor.newDefault()
-    val nodeConfig = NodeConfiguration.newPublic(hostIp, URI.create(rosMasterUri))
-    val node = PublisherNode()
-    nodeExecutor.execute(node, nodeConfig)
+    val nodeConfig = NodeConfiguration.newPublic("127.0.0.1", URI.create("http://127.0.0.1:11311"))
+    DefaultNodeMainExecutor.newDefault().execute(PublisherNode(), nodeConfig)
 }
 
 class PublisherNode: NodeMain {
@@ -83,12 +75,11 @@ class PublisherNode: NodeMain {
 ```
 </details>
 
-</p>
+</p></blockquote>
 </details>
 
 
-<details><summary>Subscriber</summary>
-<p>
+<details><summary>Subscriber</summary><blockquote><p>
 
 <details><summary>Python</summary>
 
@@ -101,7 +92,6 @@ rospy.init_node('listener', anonymous=True)
 rospy.Subscriber("chatter", String, callback)
 rospy.spin()
 ```
-
 </details>
 
 <details><summary>C++</summary>
@@ -119,8 +109,7 @@ ros::NodeHandle nh;
 ros::Subscriber sub = nh.subscribe("chatter", 1000, chatterCallback);
 ros::spin();
 ```
-
-<details>
+</details>
 
 <details><summary>Kotlin</summary>
 
@@ -131,15 +120,8 @@ import org.ros.node.*
 import java.net.URI
 
 fun main(args: Array<String>) {
-    System.setProperty("org.apache.commons.logging.Log",
-        "org.apache.commons.logging.impl.NoOpLog")
-    val rosMasterUri = "http://127.0.0.1:11311"
-    val hostIp = "127.0.0.1"
-
-    val nodeExecutor = DefaultNodeMainExecutor.newDefault()
-    val nodeConfig = NodeConfiguration.newPublic(hostIp, URI.create(rosMasterUri))
-    val node = SubscriberNode()
-    nodeExecutor.execute(node, nodeConfig)
+    val nodeConfig = NodeConfiguration.newPublic("127.0.0.1", URI.create("http://127.0.0.1:11311"))
+    DefaultNodeMainExecutor.newDefault().execute(SubscriberNode(), nodeConfig)
 }
 
 class SubscriberNode: NodeMain {
@@ -159,12 +141,11 @@ class SubscriberNode: NodeMain {
 ```
 </details>
 
-</p>
+</p></blockquote>
 </details>
 
 
-<details><summary>Service</summary>
-<p>
+<details><summary>Service</summary><p><blockquote>
 
 <details><summary>Python</summary>
 
@@ -185,12 +166,11 @@ rospy.spin()
 
 </details>
 
-</p>
+</p></blockquote>
 </details>
 
 
-<details><summary>Service Client</summary>
-<p>
+<details><summary>Service Client</summary><p><blockquote>
 
 <details><summary>Python</summary>
 
@@ -210,7 +190,7 @@ def set_bool(data)
 
 </details>
 
-</p>
+</p></blockquote>
 </details>
 
 
