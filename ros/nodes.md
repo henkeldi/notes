@@ -18,7 +18,6 @@ while not rospy.is_shutdown():
     pub.publish(hello_str)
     rate.sleep()
 ```
-
 </details>
 
 <details><summary>C++</summary>
@@ -40,8 +39,48 @@ while (ros::ok()) {
     loop_rate.sleep();
 }
 ```
+</details>
 
+<details><summary>Kotlin</summary>
 
+```kotlin
+import org.ros.concurrent.CancellableLoop
+import org.ros.namespace.GraphName
+import org.ros.node.*
+import java.net.URI
+
+fun main(args: Array<String>) {
+    System.setProperty("org.apache.commons.logging.Log",
+        "org.apache.commons.logging.impl.NoOpLog")
+    val rosMasterUri = "http://127.0.0.1:11311"
+    val hostIp = "127.0.0.1"
+
+    val nodeExecutor = DefaultNodeMainExecutor.newDefault()
+    val nodeConfig = NodeConfiguration.newPublic(hostIp, URI.create(rosMasterUri))
+    val node = PublisherNode()
+    nodeExecutor.execute(node, nodeConfig)
+}
+
+class PublisherNode: NodeMain {
+    override fun getDefaultNodeName(): GraphName {return GraphName.of("PublisherNode")}
+    override fun onShutdownComplete(node: Node?) {}
+    override fun onShutdown(node: Node?) {}
+    override fun onError(node: Node?, throwable: Throwable?) {}
+    override fun onStart(connectedNode: ConnectedNode?) {
+        val publisher = connectedNode?.newPublisher<std_msgs.String>("chatter",
+            std_msgs.String._TYPE)
+
+        connectedNode?.executeCancellableLoop(object: CancellableLoop() {
+            override fun loop() {
+                val str = publisher?.newMessage()
+                str?.data = "Hallo"
+                publisher?.publish(str)
+                Thread.sleep(1000)
+            }
+        })
+    }
+}
+```
 </details>
 
 </p>
@@ -49,9 +88,10 @@ while (ros::ok()) {
 
 
 <details><summary>Subscriber</summary>
+<p>
 
 <details><summary>Python</summary>
-<p>
+
 
 ```python
 import rospy
@@ -62,11 +102,9 @@ rospy.Subscriber("chatter", String, callback)
 rospy.spin()
 ```
 
-</p>
 </details>
 
 <details><summary>C++</summary>
-<p>
 
 ```cpp
 #include "ros/ros.h"
@@ -82,16 +120,54 @@ ros::Subscriber sub = nh.subscribe("chatter", 1000, chatterCallback);
 ros::spin();
 ```
 
-</p>
+<details><summary>Kotlin</summary>
+
+```kotlin
+import org.ros.concurrent.CancellableLoop
+import org.ros.namespace.GraphName
+import org.ros.node.*
+import java.net.URI
+
+fun main(args: Array<String>) {
+    System.setProperty("org.apache.commons.logging.Log",
+        "org.apache.commons.logging.impl.NoOpLog")
+    val rosMasterUri = "http://127.0.0.1:11311"
+    val hostIp = "127.0.0.1"
+
+    val nodeExecutor = DefaultNodeMainExecutor.newDefault()
+    val nodeConfig = NodeConfiguration.newPublic(hostIp, URI.create(rosMasterUri))
+    val node = SubscriberNode()
+    nodeExecutor.execute(node, nodeConfig)
+}
+
+class SubscriberNode: NodeMain {
+    override fun getDefaultNodeName(): GraphName {return GraphName.of("SubscriberNode")}
+    override fun onShutdownComplete(node: Node?) {}
+    override fun onShutdown(node: Node?) {}
+    override fun onError(node: Node?, throwable: Throwable?) {}
+    override fun onStart(connectedNode: ConnectedNode?) {
+        val subscriber = connectedNode?.newSubscriber<std_msgs.String>("chatter",
+            std_msgs.String._TYPE)
+
+        subscriber?.addMessageListener {
+            println("I heard ${it.data}")
+        }
+    }
+}
+```
 </details>
 
+</details>
+
+</p>
 </details>
 
 
 <details><summary>Service</summary>
+<p>
 
 <details><summary>Python</summary>
-<p>
+
 
 ```python
 import rospy
@@ -107,7 +183,6 @@ s = rospy.Service('set_bool', SetBool, handle_service_rquest)
 rospy.spin()
 ```
 
-</p>
 </details>
 
 </details>
@@ -116,7 +191,6 @@ rospy.spin()
 <details><summary>Service Client</summary>
 
 <details><summary>Python</summary>
-<p>
 
 ```python
 import rospy
@@ -132,9 +206,9 @@ def set_bool(data)
         print "Service call failed: %s"%e
 ```
 
-</p>
 </details>
 
+</p>
 </details>
 
 
