@@ -2,9 +2,9 @@
 # ROS
 
 <details><summary>Publisher</summary>
+<p>
 
 <details><summary>Python</summary>
-<p>
 
 ```python
 import rospy
@@ -19,11 +19,9 @@ while not rospy.is_shutdown():
     rate.sleep()
 ```
 
-</p>
 </details>
 
 <details><summary>C++</summary>
-<p>
 
 ```cpp
 #include "ros/ros.h"
@@ -43,9 +41,10 @@ while (ros::ok()) {
 }
 ```
 
-</p>
+
 </details>
 
+</p>
 </details>
 
 
