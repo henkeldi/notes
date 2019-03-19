@@ -185,10 +185,12 @@ rospy.spin()
 
 </details>
 
+</p>
 </details>
 
 
 <details><summary>Service Client</summary>
+<p>
 
 <details><summary>Python</summary>
 
