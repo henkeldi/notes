@@ -28,6 +28,7 @@
 
 ### Simulation Technology
 
+* [Structuring a Simulation](simulation-technology/structure.md)
 * [Integrators](simulation-technology/integrators.md)
 
 ### Deep Learning
