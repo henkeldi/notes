@@ -1,36 +1,25 @@
 # Notes
 
-### Tensorflow
+### Machine Learning
 
-* [Tensorflow 2.0](tensorflow/tensorflow2.0.md)
-* [Tensorflow Lite](tensorflow/tflite.md)
-* [Tensorflow JS](tensorflow/tensorflow.js.md)
-* [Tensorflow Hub](tensorflow/tensorflow-hub.md)
-* [Tensorflow Agents](tensorflow/tf-agents.md)
-* [Tensorflow Probability](tensorflow/tensorflow-prob.md)
-* [Tensorflow Extended](tensorflow/tensorflow-extended.md)
+* [Deep Learning Essentials](deep-learning/deep-learning.md)
+* Tensorflow {[2.0](tensorflow/tensorflow2.0.md), [Lite](tensorflow/tflite.md), [JS](tensorflow/tensorflow.js.md), [Hub](tensorflow/tensorflow-hub.md), [Agent](tensorflow/tf-agents.md), [Probability](tensorflow/tensorflow-prob.md), [Extended](tensorflow/tensorflow-extended.md)}
+
 
 ### Robotics
 
 * [Robotics Nanodegree - Project 1 - Search and Sample Return](robotics-nanodegree/project-1.md)
-
-### ROS
-
-* [Writing Nodes](ros/nodes.md)
+* [Writing ROS Nodes](ros/nodes.md)
 
 ### Computer Vision
 
 * [Camera Calibration](computer-vision/camera-calibration.md)
-
-### Web development
-
-* [Setup Typescript React Project](web-development/setup-typescript-react-project.md)
 
 ### Simulation Technology
 
 * [Structuring a Simulation](simulation-technology/structure.md)
 * [Integrators](simulation-technology/integrators.md)
 
-### Deep Learning
+### Web development
 
-* [Essentials](deep-learning/deep-learning.md)
+* [Setup Typescript React Project](web-development/setup-typescript-react-project.md)
