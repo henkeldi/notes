@@ -1,25 +1,10 @@
 
 # ROS
 
-<details><summary>Publisher</summary><blockquote><p>
 
-<details><summary>Python</summary>
+<details><summary>C++</summary><blockquote><p>
 
-```python
-import rospy
-from std_msgs.msg import String
-
-pub = rospy.Publisher('chatter', String, queue_size=10)
-rospy.init_node('talker', anonymous=True)
-while not rospy.is_shutdown():
-    hello_str = "hello world %s" % rospy.get_time()
-    rospy.loginfo(hello_str)
-    pub.publish(hello_str)
-    rate.sleep()
-```
-</details>
-
-<details><summary>C++</summary>
+<details><summary>Publisher</summary>
 
 ```cpp
 #include "ros/ros.h"
@@ -40,7 +25,127 @@ while (ros::ok()) {
 ```
 </details>
 
-<details><summary>Kotlin</summary>
+<details><summary>Subscriber</summary>
+
+```cpp
+#include "ros/ros.h"
+#include "std_msgs/String.h"
+
+void chatterCallback(const std_msgs::String::ConstPtr& msg) {
+  ROS_INFO("I heard: [%s]", msg->data.c_str());
+}
+
+ros::init(argc, argv, "listener");
+ros::NodeHandle nh;
+ros::Subscriber sub = nh.subscribe("chatter", 1000, chatterCallback);
+ros::spin();
+```
+</details>
+
+<details><summary>Service</summary>
+</details>
+
+<details><summary>Service Client</summary>
+
+```C++
+#include "ros/ros.h"
+#include "beginner_tutorials/AddTwoInts.h"
+#include <cstdlib>
+
+int main(int argc, char **argv) {
+  ros::NodeHandle n;
+  ros::ServiceClient client = n.serviceClient<beginner_tutorials::AddTwoInts>("add_two_ints");
+  beginner_tutorials::AddTwoInts srv;
+  srv.request.a = atoll(argv[1]);
+  srv.request.b = atoll(argv[2]);
+  if (client.call(srv))
+  {
+    ROS_INFO("Sum: %ld", (long int)srv.response.sum);
+  }
+  else
+  {
+    ROS_ERROR("Failed to call service add_two_ints");
+    return 1;
+  }
+
+  return 0;
+}
+```
+</details>
+
+</details>
+
+
+<details><summary>Python</summary><blockquote><p>
+
+<details><summary>Publisher</summary>
+
+```python
+import rospy
+from std_msgs.msg import String
+
+pub = rospy.Publisher('chatter', String, queue_size=10)
+rospy.init_node('talker', anonymous=True)
+while not rospy.is_shutdown():
+    hello_str = "hello world %s" % rospy.get_time()
+    rospy.loginfo(hello_str)
+    pub.publish(hello_str)
+    rate.sleep()
+```
+</details>
+
+<details><summary>Subscriber</summary>
+
+```python
+import rospy
+from std_msgs.msg import String
+
+rospy.init_node('listener', anonymous=True)
+rospy.Subscriber("chatter", String, callback)
+rospy.spin()
+```
+</details>
+
+<details><summary>Service</summary>
+
+```python
+import rospy
+from std_srvs.srv import SetBool
+
+
+def handle_service_rquest(req):
+    return SetBoolResponse(success=True, message="")
+
+
+rospy.init_node('node_name')
+s = rospy.Service('set_bool', SetBool, handle_service_rquest)
+rospy.spin()
+```
+</details>
+
+<details><summary>Service Client</summary>
+
+```python
+import rospy
+from std_srvs.srv import SetBool
+
+def set_bool(data)
+    rospy.wait_for_service('set_bool')
+    try:
+        set_bool_client = rospy.ServiceProxy('set_bool', SetBool)
+        response = set_bool_client(data)
+        return response.success
+    except rospy.ServiceException, e:
+        print "Service call failed: %s"%e
+```
+</details>
+
+</details>
+
+
+<details><summary>Kotlin</summary><blockquote><p>
+
+<details><summary>Publisher</summary>
 
 ```kotlin
 import org.ros.concurrent.CancellableLoop
@@ -75,43 +180,7 @@ class PublisherNode: NodeMain {
 ```
 </details>
 
-</p></blockquote>
-</details>
-
-
-<details><summary>Subscriber</summary><blockquote><p>
-
-<details><summary>Python</summary>
-
-
-```python
-import rospy
-from std_msgs.msg import String
-
-rospy.init_node('listener', anonymous=True)
-rospy.Subscriber("chatter", String, callback)
-rospy.spin()
-```
-</details>
-
-<details><summary>C++</summary>
-
-```cpp
-#include "ros/ros.h"
-#include "std_msgs/String.h"
-
-void chatterCallback(const std_msgs::String::ConstPtr& msg) {
-  ROS_INFO("I heard: [%s]", msg->data.c_str());
-}
-
-ros::init(argc, argv, "listener");
-ros::NodeHandle nh;
-ros::Subscriber sub = nh.subscribe("chatter", 1000, chatterCallback);
-ros::spin();
-```
-</details>
-
-<details><summary>Kotlin</summary>
+<details><summary>Subscriber</summary>
 
 ```kotlin
 import org.ros.concurrent.CancellableLoop
@@ -141,86 +210,13 @@ class SubscriberNode: NodeMain {
 ```
 </details>
 
-</p></blockquote>
+<details><summary>Service</summary>
 </details>
 
-
-<details><summary>Service</summary><p><blockquote>
-
-<details><summary>Python</summary>
-
-
-```python
-import rospy
-from std_srvs.srv import SetBool
-
-
-def handle_service_rquest(req):
-    return SetBoolResponse(success=True, message="")
-
-
-rospy.init_node('node_name')
-s = rospy.Service('set_bool', SetBool, handle_service_rquest)
-rospy.spin()
-```
-
+<details><summary>Service Client</summary>
 </details>
 
-<details><summary>C++</summary>
-
-```C++
-#include "ros/ros.h"
-#include "beginner_tutorials/AddTwoInts.h"
-#include <cstdlib>
-
-int main(int argc, char **argv) {
-  ros::NodeHandle n;
-  ros::ServiceClient client = n.serviceClient<beginner_tutorials::AddTwoInts>("add_two_ints");
-  beginner_tutorials::AddTwoInts srv;
-  srv.request.a = atoll(argv[1]);
-  srv.request.b = atoll(argv[2]);
-  if (client.call(srv))
-  {
-    ROS_INFO("Sum: %ld", (long int)srv.response.sum);
-  }
-  else
-  {
-    ROS_ERROR("Failed to call service add_two_ints");
-    return 1;
-  }
-
-  return 0;
-}
-```
 </details>
-
-</p></blockquote>
-</details>
-
-
-<details><summary>Service Client</summary><p><blockquote>
-
-<details><summary>Python</summary>
-
-```python
-import rospy
-from std_srvs.srv import SetBool
-
-def set_bool(data)
-    rospy.wait_for_service('set_bool')
-    try:
-        set_bool_client = rospy.ServiceProxy('set_bool', SetBool)
-        response = set_bool_client(data)
-        return response.success
-    except rospy.ServiceException, e:
-        print "Service call failed: %s"%e
-```
-
-</details>
-
-</p></blockquote>
-</details>
-
 
 ### Source
 [ROS Python Documentation](http://wiki.ros.org/ROS/Tutorials/WritingPublisherSubscriber%28python%29)
