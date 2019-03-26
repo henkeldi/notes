@@ -218,5 +218,122 @@ class SubscriberNode: NodeMain {
 
 </details>
 
+
+<details><summary>Javascript</summary><blockquote><p>
+
+<details><summary>Publisher</summary>
+
+```javascript
+let ros = new ROSLIB.Ros({
+    url : 'ws://localhost:9090'
+});
+
+ros.on('connection', function() {
+    console.log('Connected to websocket server.');
+});
+
+ros.on('error', function(error) {
+    console.log('Error connecting to websocket server: ', error);
+});
+
+ros.on('close', function() {
+    console.log('Connection to websocket server closed.');
+});
+
+const cmdVel = new ROSLIB.Topic({
+    ros : ros,
+    name : '/cmd_vel',
+    messageType : 'geometry_msgs/Twist'
+});
+
+const twist = new ROSLIB.Message({
+    linear : {
+        x : 0.1,
+        y : 0.2,
+        z : 0.3
+    },
+    angular : {
+        x : -0.1,
+        y : -0.2,
+        z : -0.3
+    }
+});
+cmdVel.publish(twist);
+```
+</details>
+
+<details><summary>Subscriber</summary>
+
+```javascript
+let ros = new ROSLIB.Ros({
+    url : 'ws://localhost:9090'
+});
+
+ros.on('connection', function() {
+    console.log('Connected to websocket server.');
+});
+
+ros.on('error', function(error) {
+    console.log('Error connecting to websocket server: ', error);
+});
+
+ros.on('close', function() {
+    console.log('Connection to websocket server closed.');
+});
+
+let listener = new ROSLIB.Topic({
+    ros : ros,
+    name : '/listener',
+    messageType : 'std_msgs/String'
+});
+
+listener.subscribe(function(message) {
+    console.log('Received message on ' + listener.name + ': ' + message.data);
+    listener.unsubscribe();
+});
+```
+</details>
+
+<details><summary>Service Client</summary>
+
+```javascript
+let ros = new ROSLIB.Ros({
+    url : 'ws://localhost:9090'
+});
+
+ros.on('connection', function() {
+    console.log('Connected to websocket server.');
+});
+
+ros.on('error', function(error) {
+    console.log('Error connecting to websocket server: ', error);
+});
+
+ros.on('close', function() {
+    console.log('Connection to websocket server closed.');
+});
+
+let addTwoIntsClient = new ROSLIB.Service({
+    ros : ros,
+    name : '/add_two_ints',
+    serviceType : 'rospy_tutorials/AddTwoInts'
+});
+
+let request = new ROSLIB.ServiceRequest({
+    a : 1,
+    b : 2
+});
+
+addTwoIntsClient.callService(request, result => {
+    console.log('Result for service call on '
+      + addTwoIntsClient.name
+      + ': '
+      + result.sum);
+});
+```
+</details>
+
+</details>
+
 ### Source
 [ROS Python Documentation](http://wiki.ros.org/ROS/Tutorials/WritingPublisherSubscriber%28python%29)
