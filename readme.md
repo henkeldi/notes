@@ -20,6 +20,10 @@
 * [Integrators](simulation-technology/integrators.md)
 * [Rigid Body Simulation](simulation-technology/rigid-body-simulation.md)
 
+### Matplotlib
+
+* [Examples](./matplotlib/matplotlib.md)
+
 ### Web development
 
 * [Setup Typescript React Project](web-development/setup-typescript-react-project.md)
