@@ -43,6 +43,30 @@ ros::spin();
 </details>
 
 <details><summary>Service</summary>
+
+```cpp
+#include "ros/ros.h"
+#include "std_srvs/SetBool.h"
+
+bool set_bool(std_srvs::SetBool::Request  &req,
+         std_srvs::SetBool::Response &res)
+{
+  // do something with req.data
+  res.success = true;
+  res.message = "OK";
+  return true;
+}
+
+int main(int argc, char **argv) {
+  ros::init(argc, argv, "add_two_ints_server");
+  ros::NodeHandle n;
+
+  ros::ServiceServer service = n.advertiseService("set_bool", set_bool);
+  ros::spin();
+
+  return 0;
+}
+```
 </details>
 
 <details><summary>Service Client</summary>
