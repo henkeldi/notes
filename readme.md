@@ -20,6 +20,7 @@
 * [Structuring a Simulation](simulation-technology/structure.md)
 * [Integrators](simulation-technology/integrators.md)
 * [Rigid Body Simulation](simulation-technology/rigid-body-simulation.md)
+* [Trajectory Generator](simulation-technology/trajectory-generator.md)
 
 ### OpenGL
 
