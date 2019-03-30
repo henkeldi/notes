@@ -3,12 +3,12 @@
 
 ### Given
 
-* Initial State s0 at time t0
-* Final State sf at time tf
+* Initial State **s0** at time **t0**
+* Final State **sf** at time **tf**
 
 ### Required
 
-* Smooth trajectory between s0 and sf
+* Smooth trajectory between **s0** and **sf**
 
 ### Approach
 
@@ -16,11 +16,11 @@
 
 ![Cubic Trajectory Image](./images/cubic-trajectory.svg)
 
-1. Find parameter a0 ... a4
+1. Find parameter **a0** ... **a4**
 
 ![Cubic Trajectory Solution 1 Image](./images/cubic-trajectory-1.svg)
 
-Special case: Interpolate between two rotation matrices
+**Special case**: Interpolate between two rotation matrices
 
 0. Calculate difference of rotation matrices:
 
