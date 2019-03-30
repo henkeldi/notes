@@ -22,7 +22,7 @@
 
 Special case: Interpolate between two rotation matrices
 
-0. Calculate Difference of rotation matrices:
+0. Calculate difference of rotation matrices:
 
 ```python
 R_0_f = R0.T.dot(Rf)
@@ -52,7 +52,7 @@ def toEuler(R):
 3. To get intermediate values for the rotation matrix use:
 
 ```python
-def toRotationMatrix(angle, vector):
+def toRotationMatrix(vector, angle):
     s = sin(angle)
     c = cos(angle)
     x, y, z = vector[0:3]
