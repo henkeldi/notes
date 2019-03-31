@@ -75,6 +75,19 @@ X -= np.mean(X)
 X /= np.std(X, axis = 0)
 ```
 
+### Step 6: PCA
+```python
+# Assume input data matrix X of size [N x D]
+X -= np.mean(X, axis=0)  # zero-center the data (important)
+cov = np.dot(X.T, X) / X.shape[0]  # get the data covariance matrix
+U,S,V = np.linalg.svd(cov)
+Xrot = np.dot(X, U)  # decorrelate the data
+Xrot_reduced = np.dot(X, U[:, :100])  # Xrot_reduced becomes [N x 100]
+```
+
+* Very good performance by training linear classifiers or neural networks
+* Savings in both space and time.
+
 ### Step 6: Whitening
 
 ```python
