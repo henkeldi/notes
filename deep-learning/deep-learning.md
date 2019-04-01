@@ -147,3 +147,68 @@ h1 = ReLU(np.dot(X, W1) + b1)
 h2 = ReLU(np.dot(h1, W2) + b2)
 out = np.dot(h2, W3) + b3
 ```
+
+### Loss functions
+
+#### Classification
+
+![Loss function](./images/general-loss-function.svg)
+
+##### Multiclass Support Vector Machine loss
+
+* Used in SVM classifier
+* The SVM loss function wants the score of the correct class y_i to be larger than the incorrect class scores by at least by Δ. [ext. link](http://cs231n.github.io/linear-classify/)
+* Also called hinge loss or max-margin loss
+
+![SVM Loss](./images/svm-loss.svg)
+
+![L2 SVM Loss](./images/l2-svm-loss.svg)
+
+* Squared hinge loss or L2-SVM
+* Penalizes violated margins more strongly
+* The unsquared version is more standard, but in some datasets the squared hinge loss can work better. This can be determined during cross-validation.
+
+##### Cross-entropy loss
+
+* Used in Softmax classifier
+
+![Softmax function](./images/softmax-loss.svg)
+
+or
+
+![Softmax 2 function](./images/softmax2-loss.svg)
+
+Practical issues: Numerical stability
+* For numerical stability implement the equation above as follows:
+
+![Softmax Implementation 1](./images/softmax-iml1-loss.svg)
+
+where
+
+![Softmax Implementation 2](./images/softmax-iml2-loss.svg)
+
+```python
+f = np.array([123, 456, 789])  # example with 3 classes and each having large scores
+p = np.exp(f) / np.sum(np.exp(f))  # Bad: Numeric problem, potential blowup
+
+# instead: first shift the values of f so that the highest number is 0:
+f -= np.max(f)  # f becomes [-666, -333, 0]
+p = np.exp(f) / np.sum(np.exp(f))  # safe to do, gives the correct answer
+```
+
+#### Hierarchical Softmax
+
+Problem: Large number of classes (e.g 22k)
+* Explanation [ext. link](http://arxiv.org/pdf/1310.4546.pdf)
+
+#### Attribute classification
+
+* Binary classifier for each category independently
+
+![Attribute Classification](./images/attribut-classification-loss.svg)
+
+* Logistic regression classifier for every attribute independently
+
+![Independent Attribute Loss](./images/independent-attribute-loss.svg)
+
+![Independent Attribute Loss 2](./images/independent-attribute-loss-2.svg)
