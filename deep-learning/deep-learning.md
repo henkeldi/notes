@@ -212,3 +212,24 @@ Problem: Large number of classes (e.g 22k)
 ![Independent Attribute Loss](./images/independent-attribute-loss.svg)
 
 ![Independent Attribute Loss 2](./images/independent-attribute-loss-2.svg)
+
+### Dropout
+* Introduced by [http://www.cs.toronto.edu/~rsalakhu/papers/srivastava14a.pdf Dropout: A Simple Way to Prevent Neural Networks from Overfitting]
+* Keeps neuron active with some propability <math>p</math> or setting it to zero otherwise.
+* [http://papers.nips.cc/paper/4882-dropout-training-as-adaptive-regularization.pdf Dropout Training as Adaptive Regularization]
+```python
+p = 0.5 # probability of keeping a unit active. higher = less dropout
+
+def train_step(X):
+  '''Forward pass for example 3-layer neural network.'''
+  H1 = np.maximum(0, np.dot(W1, X) + b1)
+  U1 = (np.random.rand(*H1.shape) < p) / p  # first dropout mask. Notice /p!
+  H1 *= U1 # drop!
+  H2 = np.maximum(0, np.dot(W2, H1) + b2)
+  U2 = (np.random.rand(*H2.shape) < p) / p  # second dropout mask. Notice /p!
+  H2 *= U2  # drop!
+  out = np.dot(W3, H2) + b3
+  
+  # backward pass: compute gradients... (not shown)
+  # perform parameter update... (not shown)
+```
