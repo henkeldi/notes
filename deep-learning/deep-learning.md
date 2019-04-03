@@ -233,3 +233,33 @@ def train_step(X):
   # backward pass: compute gradients... (not shown)
   # perform parameter update... (not shown)
 ```
+
+## Gradient update
+### Gradient Descent
+
+```python
+while True:
+  weights_grad = evaluate_gradient(loss_fun, data, weights)
+  weights += - step_size * weights_grad  # perform parameter update
+```
+
+### Minibatch Gradient Descent
+
+```python
+while True:
+  data_batch = sample_training_data(data, 256)  # sample 256 examples
+  weights_grad = evaluate_gradient(loss_fun, data_batch, weights)
+  weights += - step_size * weights_grad  # perform parameter update
+```
+
+* Also called Minibatch Gradient Descent (MGD) or Batch gradient descent (BGD)
+* Stochastic Gradient Descent batch_size = 1
+* Common values for batch size 32, 64, 128 (power of 2)
+
+Sample batch:
+
+```python
+indx = np.random.choice(num_train,batch_size)
+X_batch = X[indx]
+y_batch = y[indx]
+```
