@@ -263,3 +263,85 @@ indx = np.random.choice(num_train,batch_size)
 X_batch = X[indx]
 y_batch = y[indx]
 ```
+
+## Cross-validation
+Goal: tuning hyperparameters
+
+##### Step 1: Split training set into folds
+Typical number of folds: 3, 5, 10 See [ext. link](http://cs231n.github.io/classification)
+
+```python
+num_folds = 5
+
+X_train_folds = np.array_split(X_train, num_folds)
+y_train_folds = np.array_split(y_train, num_folds)
+```
+
+##### Step 2: Try all hyperparameter-fold combinations
+
+* Iterate over the hyperparameter choices
+* Iterate over the folds
+* Select one fold to be the cross validation data
+* All other folds are used for training
+* Record the accuracy
+* Select the hyperparameter based on highest accuracy
+
+Example: hyperparameter k
+
+```python
+k_choices = [1, 3, 5, 8, 10, 12, 15, 20, 50, 100]
+
+k_to_accuracies = {}
+
+for k in k_choices:
+    k_to_accuracies[k] = []
+    for fold in range(num_folds):
+        X_cross = X_train_folds[fold]
+        y_cross = y_train_folds[fold]
+        X_train = np.concatenate(X_train_folds[:fold] + X_train_folds[fold + 1:])
+        y_train = np.concatenate(y_train_folds[:fold] + y_train_folds[fold + 1:])
+
+        classifier.train( X_train, y_train )
+        y_pred = classifier.predict(X_cross,k)
+
+        accuracy = np.mean( y_pred == y_cross )
+        k_to_accuracies[k].append(accuracy)
+```
+
+or using itertools:
+
+```python
+import itertools
+results = {}
+best_val = -1
+best_softmax = None
+learning_rates = [1e-7, 5e-7]
+regularization_strengths = [5e4, 1e8]
+
+for l,r in itertools.product(learning_rates, regularization_strengths):
+    classifier = Softmax()
+    classifier.train(X_train, y_train, learning_rate=l, reg=r, num_iters=2000, verbose=False)
+    accuracy_train = np.mean( classifier.predict(X_train) == y_train )
+    accuracy_val = np.mean( classifier.predict(X_val) == y_val )
+    results[(l,r)] = (accuracy_train, accuracy_val)
+    if accuracy_val > best_val:
+        best_val = accuracy_val
+        best_softmax = classifier
+```
+
+##### Step 3: Plot result
+
+```python
+for k in k_choices:
+  accuracies = k_to_accuracies[k]
+  plt.scatter([k] * len(accuracies), accuracies)
+
+# plot the trend line with error bars that correspond to standard deviation
+accuracies_mean = np.array([np.mean(v) for k,v in sorted(k_to_accuracies.items())])
+accuracies_std = np.array([np.std(v) for k,v in sorted(k_to_accuracies.items())])
+plt.errorbar(k_choices, accuracies_mean, yerr=accuracies_std)
+plt.title('Cross-validation on k')
+plt.xlabel('k')
+plt.ylabel('Cross-validation accuracy')
+plt.show()
+```
