@@ -38,12 +38,19 @@
 ```json
 {
     "compilerOptions": {
+        "target": "es5",
+        "lib": [
+          "dom",
+          "dom.iterable",
+          "esnext"
+        ],
         "noImplicitAny": true,
         "removeComments": true,
         "preserveConstEnums": true,
+        "allowSyntheticDefaultImports": true,
+        "strict": true,
         "sourceMap": true,
-        "module": "commonjs",
-        "target": "es2017",
+        "module": "esnext",
         "jsx": "react"
     },
     "include": [
@@ -63,10 +70,10 @@ const path = require('path');
 
 module.exports = {
     entry: {
-        app: path.join(__dirname, 'src', 'index.tsx')
+        bundle: path.join(__dirname, 'src', 'index.tsx')
     },
     output: {
-        path: path.join(__dirname, 'static', 'js')
+        path: path.join(__dirname, 'public', 'js')
     },
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.json']
@@ -93,7 +100,7 @@ module.exports = merge(common, {
     mode: 'development',
     devtool: 'inline-source-map',
     devServer: {
-        contentBase: path.join(__dirname, 'static'),
+        contentBase: path.join(__dirname, 'public'),
         publicPath: '/js'
     },
 })
@@ -116,18 +123,23 @@ module.exports = merge(common, {
 ```
 
 
-#### static/index.html
+#### public/index.html
 
 ```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>My Page</title>
-    <meta charset="utf-8">
+  <meta charset="utf-8">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+  <title>My Page</title>
 </head>
-<body style="margin: 0" >
-    <div id="app"></div>
-    <script src="js/app.js"></script>
+<body>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root"></div>
+  <script src="js/bundle.js"></script>
 </body>
 </html>
 ```
@@ -135,29 +147,47 @@ module.exports = merge(common, {
 #### src/index.tsx
 
 ```typescript
-import * as React from "react";
-import * as ReactDOM from "react-dom";
+import ReactDOM from "react-dom";
+import React from "react";
+
+import SubComponent from './subcomponent'
 
 ReactDOM.render(
-    <h1>Hello, world!</h1>,
-    document.getElementById('app')
-);
+  <SubComponent />,
+  document.getElementById('root')
+)
+```
+
+#### src/subcomponent.tsx
+
+```typescript
+import React, { Component } from 'react'
+
+class SubComponent extends Component<{}, {}> {
+
+  render() {
+    return <h1>Hello World</h1>;
+  }
+
+}
+
+export default SubComponent;
 ```
 
 #### Install dependencies
 
 ```bash
-npm install
+yarn install
 ```
 
 #### Run webpack dev server
 
 ```bash
-npm run dev
+yarn dev
 ```
 
 #### Build project for deployment
 
 ```bash
-npm run build
+yarn build
 ```
