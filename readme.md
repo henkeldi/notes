@@ -35,3 +35,4 @@
 ### Web development
 
 * [Setup Typescript React Project](web-development/setup-typescript-react-project.md)
+* [React](web-development/react.md)
