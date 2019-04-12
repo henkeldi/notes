@@ -100,8 +100,8 @@ fuse.run();
 #### src/index.tsx
 
 ```typescript
-import ReactDOM from "react-dom";
-import React from "react";
+import * as ReactDOM from "react-dom";
+import * as React from "react";
 
 import SubComponent from './subcomponent'
 
@@ -114,9 +114,9 @@ ReactDOM.render(
 #### src/subcomponent.tsx
 
 ```typescript
-import React, { Component } from 'react'
+import * as React from 'react';
 
-class SubComponent extends Component<{}, {}> {
+class SubComponent extends React.Component<{}, {}> {
 
   render() {
     return <h1>Hello World</h1>;
