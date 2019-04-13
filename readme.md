@@ -3,7 +3,9 @@
 ### Machine Learning
 
 * [Deep Learning Essentials](deep-learning/deep-learning.md)
+* [Neural Network Equations](deep-learning/neural-network.md)
 * Tensorflow {[2.0](tensorflow/tensorflow2.0.md), [Lite](tensorflow/tflite.md), [JS](tensorflow/tensorflow.js.md), [Hub](tensorflow/tensorflow-hub.md), [Agent](tensorflow/tf-agents.md), [Probability](tensorflow/tensorflow-prob.md), [Extended](tensorflow/tensorflow-extended.md)}
+
 
 ### Robotics
 
