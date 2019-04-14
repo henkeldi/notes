@@ -88,7 +88,7 @@ fuse.dev();
 fuse.run();
 ```
 
-#### public/index.html
+#### src/index.html
 
 ```html
 <!DOCTYPE html>
