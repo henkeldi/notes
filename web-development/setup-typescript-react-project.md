@@ -21,7 +21,6 @@
     "@types/react": "^16.8.8",
     "@types/react-dom": "^16.8.2",
     "fuse-box": "^3.7.1",
-    "ts-loader": "^5.3.3",
     "tslint": "^5.14.0",
     "typescript": "^3.3.3333"
   }
@@ -60,11 +59,25 @@
 #### fuse.js
 
 ```javascript
-const { FuseBox } = require("fuse-box");
+const { FuseBox,
+    CSSPlugin,
+    WebIndexPlugin,
+    ImageBase64Plugin,
+} = require("fuse-box");
 
 const fuse = FuseBox.init({
     homeDir: "src",
     output: "public/$name.js",
+    target: "browser@es2018",
+    sourceMaps: true,
+    plugins: [
+        WebIndexPlugin({
+            title: "<Webpage Title>",
+            template: "src/index.html",
+        }),
+        CSSPlugin(),
+        ImageBase64Plugin()
+    ]
 });
 
 fuse.bundle('vendor').instructions('~ **/**.tsx');
@@ -86,13 +99,12 @@ fuse.run();
     name="viewport"
     content="width=device-width, initial-scale=1, shrink-to-fit=no"
   />
-  <title>My Page</title>
+  <title>$title</title>
 </head>
 <body>
   <noscript>You need to enable JavaScript to run this app.</noscript>
   <div id="root"></div>
-  <script src="js/bundle.js"></script>
-  <script src="js/vendor.js"></script>
+  $bundles
 </body>
 </html>
 ```
@@ -102,6 +114,8 @@ fuse.run();
 ```typescript
 import * as ReactDOM from "react-dom";
 import * as React from "react";
+
+import './styles/main.css'
 
 import SubComponent from './subcomponent'
 
@@ -126,6 +140,25 @@ class SubComponent extends React.Component<{}, {}> {
 
 export default SubComponent;
 ```
+
+
+#### styles/main.css
+
+```css
+body {
+    padding: 100px;
+    background: white;
+}
+```
+#### images.d.ts
+```
+declare module "*.jpeg";
+declare module "*.jpg";
+declare module "*.gif";
+declare module "*.png";
+declare module "*.svg";
+```
+
 
 #### Install dependencies
 
