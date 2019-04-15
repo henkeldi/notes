@@ -147,17 +147,117 @@ ReactDOM.render(
 
 ```typescript
 import * as React from 'react'
-import { Link, Route } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 
-export class App extends React.Component {
+import { ShowItems } from './ShowItems'
+import { CreateItem } from './CreateItem'
+
+interface AppState {
+    items:string[]
+}
+
+export class App extends React.Component<{}, AppState> {
+
+    state = {
+        items:[]
+    }
+
+    onCreateItem(item:Item) {
+        this.setState((prevState => {prevState.items.push(item)}))
+    }
 
     render() {
         return <div>
-            <Route exact path="/" render={()=>
-                (<Link to="/create">Add Item</Link>)} />
-            <Route path="/create" render={()=>
-                (<Link to="/">Back</Link>)} />
+            <Route exact path='/' render={() =>(
+                <ShowItems items={this.state.items} />
+            )} />
+            <Route path='/create' render={({ history }) => (
+                <CreateItem
+                    onCreateItem={(item) => {
+                        this.onCreateItem(item)
+                        history.push('/')
+                    }}
+                />
+            )} />
         </div>
     }
+}
+```
+
+**ShowItems.tsx**
+
+```typescript
+import * as React from 'react'
+import { Link } from 'react-router-dom'
+
+interface ShowItemsProps {
+    items:string[]
+}
+
+export class ShowItems extends React.Component<ShowItemsProps, {}> {
+
+    render() {
+        return <div>
+            <Link to='/create'>Create new Items</Link>
+            <ul>
+                {this.props.items.map(s => (
+                    <li key={s}>Name: {s}</li>
+                ))}
+            </ul>
+        </div>
+    }
+
+}
+```
+
+**CreateItems.tsx**
+
+```typescript
+import * as React from 'react'
+import { Link } from 'react-router-dom'
+
+interface CreateItemState {
+  name: string,
+}
+
+export interface onCreateFunc {
+  (item:string):void
+}
+
+interface CreateItemProps {
+    onCreateItem:onCreateFunc
+}
+
+export class CreateItem extends React.Component<CreateItemProps, CreateItemState> {
+
+  state = {
+    name: '',
+  }
+
+  handleSubmit = (e:React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      this.props.onCreateItem(this.state.name);
+  }
+
+  onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    this.setState({
+      'name': event.target.value
+    })
+  }
+
+  render() {
+    return <div>
+      <Link to="/">Back</Link>
+      <form onSubmit={this.handleSubmit}>
+        <div>
+          <input type='text' 
+            value={this.state.name}
+            onChange={this.onChange}
+            placeholder='Name' />
+          <button>Add Item</button>
+        </div>
+      </form>
+    </div>
+  }
 }
 ```
