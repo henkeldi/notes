@@ -1,6 +1,14 @@
 
 # React
 
+### Install
+```bash
+yarn add react
+yarn add react-dom
+yarn add @types/react --dev
+yarn add @types/react-dom --dev
+```
+
 ### Controlled Component
 
 ```typescript
