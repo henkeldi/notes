@@ -108,3 +108,48 @@ class SubComponent extends Component<{}, SubComponentState> {
   render() {// render items here}
 }
 ```
+
+### React Router
+
+**Install**
+
+```bash
+yarn add react-router-dom
+yarn add @types/react-router-dom --dev
+```
+
+**index.tsx**
+
+```typescript
+import * as ReactDOM from "react-dom";
+import * as React from "react";
+import { BrowserRouter } from "react-router-dom"
+
+import { App } from './App'
+
+ReactDOM.render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>,
+  document.getElementById('root')
+)
+```
+
+**App.tsx**
+
+```typescript
+import * as React from 'react'
+import { Link, Route } from 'react-router-dom'
+
+export class App extends React.Component {
+
+    render() {
+        return <div>
+            <Route exact path="/" render={()=>
+                (<Link to="/create">Add Item</Link>)} />
+            <Route path="/create" render={()=>
+                (<Link to="/">Back</Link>)} />
+        </div>
+    }
+}
+```
