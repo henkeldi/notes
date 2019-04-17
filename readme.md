@@ -26,7 +26,7 @@
 ### OpenGL
 
 * [PyOpenGL](./opengl/pyopengl.md)
-* [Cyglfw 3](./opengl/cyglfw3.md)
+* [Cyglfw 3](./opengl/pyglfw3.md)
 * [EGL Offscreen Context](./opengl/egl.md)
 
 ### Matplotlib
