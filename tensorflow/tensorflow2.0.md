@@ -4,6 +4,17 @@
 pip install -U --pre tensorflow-gpu
 pip install -U tensorflow-datasets
 ```
+
+## Tutorials
+
+* [Deep Dream](https://www.bit.ly/mini-dream)
+* [Style Transfer](https://www.tensorflow.org/alpha/tutorials/generative/style_transfer)
+* [Pix2Pix](https://www.tensorflow.org/alpha/tutorials/generative/pix2pix)
+* [Seq-to-seq](https://www.bit.ly/mini-nmt)
+* [Neural Machine Translation with Attention](https://www.tensorflow.org/alpha/tutorials/text/nmt_with_attention)
+* [Linear Regression](https://www.bit.ly/tf-linear)
+* [Beginner Tutorial](https://www.tensorflow.org/alpha/tutorials/quickstart/beginner)
+
 ## Load Data
 
 ```python
@@ -82,6 +93,19 @@ model.fit(mnist_train, epochs=5,
 model.evaluate(mnist_test)
 ```
 
+## Model subclassing
+```python
+class MyModel(tf.keras.Model):
+  def __init__(self, num_classes=10):
+  	super(MyModel, self).__init__(name='my_model')
+  	self.dense_1 = layers.Dense(32, activation='relu')
+  	self.dense_2 = layers.Dense(num_classes, activation='sigmoid')
+
+  def call(self, inputs):
+  	x = self.dense_1(inputs)
+  	return self.dense_2(x)
+```
+
 ## Distributed learning
 ```python
 import tensorflow as tf
@@ -153,15 +177,14 @@ model.compile('sgd', losses=[AllIsLost(),
 ## Controlled training
 
 ```python
-model = ResNet50(**hparams)
-opt = SGD(lr)
+model = Model()
 
-for inputs, targets in train_dataset:
-    preds = model(inputs)
-    with tf.GradientTape() as tape:
-        loss_val = loss(preds, targets)
-        grad = tape.gradient(loss_val, model.weights)
-    opt.apply_gradients(loss_val, model.weights)
+with tf.GradientTape() as tape:
+	logits = model(images)
+	loss_value = loss(logits, labels)
+
+grads = tape.gradient(loss_value, model.trainable_variables)
+optimizer.apply_gradients(zip(grads, model.trainable_variables))
 ```
 
 ## tf.function
