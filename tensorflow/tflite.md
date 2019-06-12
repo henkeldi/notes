@@ -31,30 +31,44 @@
 
 ### Jump start
 
+0. [Super simple example](./scripts/tflite_sample.py)
 1. [Use pretrained models](https://www.tensorflow.org/tflite/models)
 2. [Retrain a model](https://codelabs.developers.google.com/codelabs/tensorflow-for-poets)
 3. Get up and running
 
-```java
+```kotlin
 // Load your model
-tfliteModel = loadModelFile(activity)
+val tfliteModel = loadModelFile(activity)
+val tfliteOptions = Interpreter.Options()
+
+// tfliteOptions.setUseNNAPI(true)
+// tfliteGpuDelegate = new GpuDelegate()
+// tfliteOptions.addDelegate(tfliteGpuDelegate)
+tfliteoptions.setNumThreads(1)
+
 tflite = new Interpreter(tfliteModel, tfliteOptions)
 
-imgData = ByteBuffer.allocateDirect(
-    DIM_BATCH_SIZE
-    * getImageSizeX()
-    * getImageSizeY()
-    * DIM_PIXEL_SIZE
-    * getNumBytesPerChannel())
-imgData.order(ByteOrder.nativeOrder())
-
-// Transforming data
-convertBitmapToByteBuffer(bitmap)
+val inputVal = floatArrayOf(100.f)
+val outputVal = ByteBuffer.allocateDirect(4)
+outputVal.order(ByteOrder.nativeOrder())
 
 // Run inference
-tflite.run(imageData, labelProbarray)
+tflite.run(inputVal, outputVal)
 
-# Use the resulting output
+// Use the resulting output
+outputVal.rewind()
+var prediction = outputVal.getFloat()
+```
+
+Android build.gradle:
+
+```gradle
+aaptOptions{
+    noCompress "tflite"
+}
+dependencies {
+    implementation 'org.tensorflow:tensorflow-lite'
+}
 ```
 
 ### Custom model
@@ -63,6 +77,7 @@ tflite.run(imageData, labelProbarray)
 import tensorflow as tf
 
 converter = tf.lite.TFLiteConverter.from_saved_model(saved_model_dir)
+
 tflite_model = converter.convert()
 open("converted_model.tflite", "wb").write(tflite_model)
 ```
@@ -105,16 +120,21 @@ tflite = new Interpreter(tfliteModel, tfliteOptions)
 C++:
 
 ```cpp
-unique_ptr<Interpreter> interpreter;
-InterpreterBuilder interpreter_builder(model, op_resolver);
-interpreter_builder(&interpreter);
+std::unique_ptr<tflite::Interpreter> interpreter;
+tflite::InterpreterBuilder(*model, resolver)(&interpreter);
 
 auto* delegate = NewTfLiteGpuDelegate(nullptr);
 if(interpreter->ModifyGraphWithDelegate(delegate != KtfLiteOk) return false;
 
-WriteToInputTensor(interpreter->typed_input_tensor<float>(0))
-if(interpreter->Invoke() != kTfLiteOk) return false;
-ReadFromOutputTensor(interpreter->typed_output_tensor<float>(0));
+// Get the index of first input tensor.
+int input_tensor_index = interpreter->inputs()[0];
+// Get the pointer to the input buffer.
+uint8_t* ibuffer = interpreter->typed_tensor<uint8_t>(input_tensor_index);
+
+// Get the index of first output tensor.
+const int output_tensor_index = interpreter->outputs()[0];
+// Get the pointer to the output buffer.
+uint8_t* obuffer = interpreter->typed_tensor<uint8_t>(output_tensor_index);
 
 DeleteTfLiteGpuDelegate(delegate);
 ```
@@ -176,9 +196,74 @@ model = tf.keras.models.Sequential({
 ])
 ```
 
-## TensorFlow Lite for Microcontrollers
+## Edge TPU
+
+```python
+# Load the TensorFlow Lite model
+engine = edgetpu.classification.engine.ClassificationEngine(args.model)
+# engine = edgetpu.classification.engine.BasicEngine(args.model)
+# engine = edgetpu.classification.engine.DetectionEngine(args.model)
+# engine = edgetpu.classification.engine.ImprintingEngine(args.model)
+
+
+# Grab input from a camera stream
+input = np.frombuffer(stream.getValue(), dtype=np.uint8)
+
+# Run inference
+result = engine.ClassifyWithInputTensor(input, top_k=1)
+
+# Annotate image with results
+if results:
+    camera.annotate_text = "%s %.2f" % (
+        labels[results[0][0]], results[0][1])
+```
+
+## Microcontrollers
 
 [TensorFlow Lite for Microcontrollers](https://www.tensorflow.org/lite/microcontrollers/overview)
+
+```cpp
+const tflite::Model* model = 
+    ::tflite::GetModel(g_tiny_conv_micro_features_model_data);
+    
+// Pull in all the operation implementations we need
+tflite::ops::micro::AllOpsResolver resolver;
+
+// Create an area of memory to use for input, output and intermediate arrays
+const int tensor_arena_size = 10 * 1024;
+uint8_t tensor_arena[tensor_arena_size];
+tflite::SimpleTensorAllocator tensor_allocator(tensor_arena,
+                                               tensor_arena_size);
+
+// Build an interpreter to run the model with
+tflite::MicroInterpreter interpreter(model, resolver, &tensor_allocator,
+                                     error_reporter);
+
+// Get information about the memory area to use for the model's input.
+TfLiteTensor* model_input = interpreter.input(0);
+
+// Prepare to access the audio spectrograms from a microphone or other source
+// that will provide the inputs to the neural network.
+FeatureProvider feature_provider(kFeatureElementCount,
+                                 model_input->data.uint8);
+
+// Perform feature extraction and populate the input array
+feature_provider.PopulateFeatureData(...);
+
+// Run the model
+TfLiteStatus invoke_status = interpreter.Invoke();
+
+// Figure out the highest scoring category
+TfLiteTensor* output = interpreter.output(0);
+uint8_t top_category_score = 0;
+for (int category_index = 0; category_index < kCategoryCount;
+     ++category_index) {
+  const uint8_t category_score = output->data.uint8[category_index];
+  if (category_score > top_category_score) {
+    top_category_score = category_score;
+  }
+}
+```
 
 ## Sources
 

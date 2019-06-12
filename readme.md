@@ -4,7 +4,7 @@
 
 * [Deep Learning Essentials](deep-learning/deep-learning.md)
 * [Neural Network Equations](deep-learning/neural-network.md)
-* Tensorflow {[2.0](tensorflow/tensorflow2.0.md), [Lite](tensorflow/tflite.md), [JS](tensorflow/tensorflow.js.md), [Hub](tensorflow/tensorflow-hub.md), [Agent](tensorflow/tf-agents.md), [Probability](tensorflow/tensorflow-prob.md), [Extended](tensorflow/tensorflow-extended.md)}
+* Tensorflow {[2.0](tensorflow/tensorflow2.0.md), [Lite](tensorflow/tflite.md), [JS](tensorflow/tensorflow.js.md), [Hub](tensorflow/tensorflow-hub.md), [Agent](tensorflow/tensorflow-agents.md), [Probability](tensorflow/tensorflow-prob.md), [Extended](tensorflow/tensorflow-extended.md)}
 
 
 ### Robotics
@@ -35,11 +35,11 @@
 
 ### Web development
 
-* [HTTPS](web-development/https.md)
-* [Setup Typescript React Project](web-development/setup-typescript-react-project.md)
-* [React](web-development/react.md)
-* [Redux](web-development/redux.md)
-* [Calling a REST API](web-development/api-call.md)
+* [HTTPS](web/https.md)
+* [Setup Typescript React Project](web/setup-typescript-react-project.md)
+* [React](web/react.md)
+* [Redux](web/redux.md)
+* [Calling a REST API](web/api-call.md)
 
 
 ### Database

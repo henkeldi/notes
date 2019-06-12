@@ -21,6 +21,12 @@ rv_y_given_x.variance()
 pip install tensorflow-probability
 ```
 
+or
+
+```bash
+pip install tfp-nightly
+```
+
 ### Example: Regression
 
 #### Learn known unknowns
@@ -69,6 +75,7 @@ model = tf.keras.Sequential([
 
 ### Useful links
 
+* [Baysian Methods for Hackers using Tensorflow Probability](https://github.com/CamDavidsonPilon/Probabilistic-Programming-and-Bayesian-Methods-for-Hackers/blob/master/Chapter1_Introduction/Ch1_Introduction_TFP.ipynb)
 * [Demo Code](https://github.com/tensorflow/probability/blob/master/tensorflow_probability/examples/jupyter_notebooks/Probabilistic_Layers_Regression.ipynb)
 * [Tensorflow Probability Tutorial](https://www.tensorflow.org/probability)
 * [Tensorflow Probability @ TF Summit](https://www.youtube.com/watch?v=BrwKURU-wpk)

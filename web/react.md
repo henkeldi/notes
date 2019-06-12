@@ -261,3 +261,50 @@ export class CreateItem extends React.Component<CreateItemProps, CreateItemState
   }
 }
 ```
+
+## Fast rendering:
+
+client-side rendering
+
+```typescript
+import * as React from 'react';
+import * as ReactDOM from 'react-dom'
+
+ReactDOM.render(<App />, document.getElementById('root'));
+```
+
+server-side rendering
+
+```typescript
+const render = (req, res) => {
+  fs.readFile('./index.html', 'utf8', (err, data) =>{
+    const html = ReactDOMServer.renderToString(<App />);
+    
+    const document = data.replace(`<div id="root">${html}</div>`);
+    res.end(document)
+  })
+}
+
+const app = express();
+app.get('*', render);
+```
+
+client-side hydration
+
+```typescript
+ReactDOM.hydrate(<App />, document.getElementById('root'));
+```
+
+streaming server-side rendering
+beneficial for sites > 16k
+```typescript
+http.createServer((request, response) => {
+    const html = ReactDOMServer.renderToNodeStream(<App />);
+
+    html.pipe(response)
+}).listen(1337);
+```
+
+# Source
+
+[Rendering on the Web - Performance Implications of Application Architecture (Google I_O ’19)](https://www.youtube.com/watch?v=k-A2VfuUROg)
