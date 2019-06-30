@@ -134,3 +134,10 @@ cv2.solvePnPRansac()
 
 * Coursera Course: [Visual Perception for Self-Driving Cars](https://www.coursera.org/learn/visual-perception-self-driving-cars/lecture/V7iCJ/lesson-1-introduction-to-image-features-and-feature-detectors)
 * OpenCV Documentation: [Feature Detectors](https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_feature2d/py_table_of_contents_feature2d/py_table_of_contents_feature2d.html), [Matcher](https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_feature2d/py_matcher/py_matcher.html), [solvePnP](https://docs.opencv.org/3.4.3/d9/d0c/group__calib3d.html#ga549c2075fac14829ff4a58bc931c033d), [solvePnPRansac](https://docs.opencv.org/3.4.3/d9/d0c/group__calib3d.html#ga50620f0e26e02caa2e9adc07b5fbf24e)
+* Original implementation of the [FAST detector](https://www.edwardrosten.com/work/fast.html)
+* [Camera Calibration Toolbox for Matlab](http://www.vision.caltech.edu/bouguetj/calib_doc/)
+* [OCamCalib](https://sites.google.com/site/scarabotix/ocamcalib-toolbox): Omnidirectional Camera Calibration Toolbox for Matlab
+* [FAB-MAP](http://www.robots.ox.ac.uk/~mjc/Software.htm): Visual-word-base loop detection
+* [G2O](https://openslam-org.github.io/g2o): Library for graph-based nonlinear function optimization. Contains several variants of SLAM and bundle ajustment.
+* [VisualSFM](http://ccwu.me/vsfm/): A Visual Structure from Motion System
+* [COLMAP](https://demuc.de/colmap/): A general-purpose, end-to-end image-based 3D reconstruction pipeline
