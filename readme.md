@@ -34,6 +34,11 @@
 
 * [Examples](./matplotlib/matplotlib.md)
 
+### Android
+
+* [Camera X](android/camera-x.md)
+* [Speech Recognizer](android/speech-recognizer.md)
+
 ### Web development
 
 * [HTTPS](web/https.md)
@@ -41,7 +46,8 @@
 * [React](web/react.md)
 * [Redux](web/redux.md)
 * [Calling a REST API](web/api-call.md)
-
+* [Puppeteer](web/puppeteer.md)
+* [Web Assembly](web/web-assembly.md)
 
 ### Database
 
