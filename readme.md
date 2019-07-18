@@ -9,8 +9,7 @@
 
 ### Robotics
 
-* [Robotics Nanodegree - Project 1 - Search and Sample Return](robotics-nanodegree/project-1.md)
-* [Writing ROS Nodes](ros/nodes.md)
+* Writing ROS {[1.0](ros/nodes.md), [2.0](ros/nodes-2.md)} Nodes
 
 ### Computer Vision
 
@@ -52,3 +51,7 @@
 ### Database
 
 * [SQLAlchemy Object Relational Mapper](database/sqlalchemy.md)
+
+### C++
+
+* [CMake](cpp/cmake.md)
