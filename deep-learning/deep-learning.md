@@ -1,6 +1,6 @@
 # Deep Learning
 
-All steps one need to go through when using a neural networks.
+All steps one need to go through when using neural networks.
 
 ## Data Preprocessing
 
