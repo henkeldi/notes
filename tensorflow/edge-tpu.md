@@ -51,7 +51,6 @@ while True:
 #include "tensorflow/lite/kernels/register.h"
 #include "tensorflow/lite/model.h"
 
-
 int main(int argc, char* argv[]) {
   std::string model_path = "mobilenet_ssd.tflite";
   auto model = tflite::FlatBufferModel::BuildFromFile(model_path.c_str());
@@ -63,8 +62,7 @@ int main(int argc, char* argv[]) {
   resolver.AddCustom(edgetpu::kCustomOp, edgetpu::RegisterCustomOp());
 
   std::unique_ptr<tflite::Interpreter> interpreter;
-  tflite::InterpreterBuilder builder(*model, resolver);
-  builder(&interpreter);
+  tflite::InterpreterBuilder builder(*model, resolver)(&interpreter);
 
   interpreter->SetExternalContext(kTfLiteEdgeTpuContext, tpu_context.get());
   interpreter->SetNumThreads(1);
@@ -161,14 +159,9 @@ export EdgeTPU_API_DIR=/path/to/edgetpu_api
 
 rm -r build
 rm edge_tpu_demo
-
 mkdir build
-
 cd build
-
 cmake ..
-
 make -j4
-
 mv ./edge_tpu_demo ..
 ```
