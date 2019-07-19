@@ -40,7 +40,7 @@ while True:
 
 ### Usage
 
-*[edge_tpu_demo.cc:](scripts/edge_tpu_demo.cpp)*
+*[edge_tpu_example.cpp:](scripts/edge_tpu_example.cpp)*
 ```cpp
 #include <iostream>
 
@@ -124,7 +124,7 @@ int main(int argc, char* argv[]) {
 
 ```cmake
 cmake_minimum_required(VERSION 3.10)
-project(edge_tpu_demo)
+project(edge_tpu_example)
 
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -pthread")
 
@@ -143,8 +143,8 @@ link_directories(
     ${EdgeTPU_API_DIR}/libedgetpu
     ${Tensorflow_DIR}/tensorflow/lite/tools/make/gen/linux_x86_64/lib)
 
-add_executable(edge_tpu_demo src/edge_tpu_demo.cpp)
-target_link_libraries(edge_tpu_demo
+add_executable(edge_tpu_example src/edge_tpu_example.cpp)
+target_link_libraries(edge_tpu_example
     ${OpenCV_LIBRARIES}
     tensorflow-lite
     edgetpu_x86_64)
@@ -158,10 +158,10 @@ export OpenCV_DIR=/path/to/opencv-4.1.0/install/lib/cmake/opencv4
 export EdgeTPU_API_DIR=/path/to/edgetpu_api
 
 rm -r build
-rm edge_tpu_demo
+rm edge_tpu_example
 mkdir build
 cd build
 cmake ..
 make -j4
-mv ./edge_tpu_demo ..
+mv ./edge_tpu_example ..
 ```
