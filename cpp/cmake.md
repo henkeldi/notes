@@ -15,7 +15,7 @@ CMake GUI:
 sudo apt-get -y install cmake-qt-gui
 ```
 
-## Minimal Example
+## Example
 
 *CMakeLists.txt:*
 
@@ -34,6 +34,9 @@ project(Foo VERSION 1.2.7)
 message("  Version: ${PROJECT_VERSION}")
 message("  Version (alt): ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}")
 
+#output: Version 1.2.7
+#        Version (alt): 1.2.7
+
 set(condition_b "NO")
 
 if(condition_b)
@@ -42,7 +45,7 @@ else()
     message("Bye")
 endif()
 
-List
+# List
 
 set(elements a b c)
 
@@ -50,15 +53,15 @@ foreach(element elements)
     message("element=${element}")
 endforeach()
 
-#output: Version 1.2.7
-#        Version (alt): 1.2.7
+include_directories(
+    include)
 
-add_executable(foo foo.cpp)
+link_directories(
+    lib)
 
-message("  C: '${CMAKE_C_COMPILER}'")
-message("  C++: '${CMAKE_CXX_COMPILER}'")
-
-message("Processing CMakeLists.txt")
+add_executable(my_program src/my_program.cpp)
+target_link_libraries(my_program
+    some_lib)
 
 add_subdirectory(foo)
 ```
