@@ -473,6 +473,21 @@ ament_target_dependencies(action_client_member_functions
 ```
 </details>
 
+<details><summary>Logging</summary>
+
+```cpp
+RCLCPP_{DEBUG, INFO, WARN, ERROR, FATAL}(logger, ...)
+RCLCPP_{DEBUG, INFO, WARN, ERROR, FATAL}_ONCE(logger, ...)
+RCLCPP_{DEBUG, INFO, WARN, ERROR, FATAL}_SKIPFIRST(logger, ...)
+
+// logs if expression evaluates to true
+RCLCPP_{DEBUG, INFO, WARN, ERROR, FATAL}_EXPRESSION(logger, expression, ...)
+
+// logs if function returns true
+RCLCPP_{DEBUG, INFO, WARN, ERROR, FATAL}_FUNCTION(logger, function, ...)
+```
+</details>
+
 </details>
 
 # Source
