@@ -47,3 +47,15 @@ network={
 	psk="my-password"
 }
 ```
+
+## Build wifi-driver for Jetson Nano
+
+Download [Driver](https://www.tp-link.com/de/support/download/archer-t4u/v3/).
+
+```bash
+make clean
+ARCH=arm64 make -j4
+sudo cp 88xbu.ko /lib/modules/<kernel-version>/kernel/drivers/net/wireless
+sudo depmod -a
+sudo modprobe 88x2bu.ko
+```
