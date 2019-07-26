@@ -48,6 +48,18 @@ network={
 }
 ```
 
+## Hostsapd
+
+```bash
+interface=wlan1
+ssid=<ssid>
+country_code=DE
+hw_mode=g
+channel=1
+wpa=2
+wpa_passphrase=<wpa-passphrase>
+```
+
 ## Build wifi-driver for Jetson Nano
 
 Download [Driver](https://www.tp-link.com/de/support/download/archer-t4u/v3/).
