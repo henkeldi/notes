@@ -48,6 +48,13 @@ network={
 }
 ```
 
+## IP Tables
+```bash
+sudo iptables -A FORWARD -i <src> -o <dst> -j ACCEPT
+sudo iptables -A FORWARD -i <dst> -o <src> -m state --state ESTABLISHED,RELATED -j ACCEPT
+sudo iptables -t nat -A POSTROUTING -o <src> -j MASQUERADE
+```
+
 ## Hostapd
 
 ```bash
