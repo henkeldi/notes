@@ -58,6 +58,21 @@ hw_mode=g
 channel=1
 wpa=2
 wpa_passphrase=<wpa-passphrase>
+
+## Key management algorithms ##
+wpa_key_mgmt=WPA-PSK
+ 
+## Set cipher suites (encryption algorithms) ##
+## TKIP = Temporal Key Integrity Protocol
+## CCMP = AES in Counter mode with CBC-MAC
+wpa_pairwise=TKIP
+rsn_pairwise=CCMP
+ 
+## Shared Key Authentication ##
+auth_algs=1
+ 
+## Accept all MAC address ###
+macaddr_acl=0
 ```
 
 ## Build wifi-driver for Jetson Nano
@@ -71,3 +86,5 @@ sudo cp 88xbu.ko /lib/modules/<kernel-version>/kernel/drivers/net/wireless
 sudo depmod -a
 sudo modprobe 88x2bu.ko
 ```
+# Source
+* [cyberciti setting-wireless-access-point](https://www.cyberciti.biz/faq/debian-ubuntu-linux-setting-wireless-access-point/)
