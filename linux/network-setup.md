@@ -48,7 +48,7 @@ network={
 }
 ```
 
-## Hostsapd
+## Hostapd
 
 ```bash
 interface=wlan1
