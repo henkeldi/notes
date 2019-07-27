@@ -36,6 +36,10 @@ unmanaged-devices=c6:f9:24:1d:65:f3
 # To disable DNS
 port=0
 
+# To enable DNS
+# port=0
+server=8.8.8.8
+
 dhcp-range=192.168.0.50,192.168.0.150,12h
 ```
 
@@ -48,6 +52,18 @@ nameserver 8.8.4.4
 Update:
 ```bash
 sudo resolvconf -u
+```
+
+## systemd-resolved
+
+Disable:
+```bash
+sudo systemctl disable systemd-resolved.service
+```
+
+Test DNS Server:
+```bash
+host www.google.com 192.168.3.1
 ```
 
 ## WPA Supplicant
