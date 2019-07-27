@@ -39,6 +39,17 @@ port=0
 dhcp-range=192.168.0.50,192.168.0.150,12h
 ```
 
+## Resolvconf
+*/etc/resolvconf/resolv.conf.d/base*
+```bash
+nameserver 8.8.8.8
+nameserver 8.8.4.4
+```
+Update:
+```bash
+sudo resolvconf -u
+```
+
 ## WPA Supplicant
 
 ```bash
