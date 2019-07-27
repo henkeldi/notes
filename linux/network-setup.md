@@ -109,6 +109,14 @@ auth_algs=1
 macaddr_acl=0
 ```
 
+# SSH
+*~/.ssh/config*
+```bash
+Host jetson
+  HostName 192.168.178.38
+  User jetson
+```
+
 ## Build wifi-driver for Jetson Nano
 
 Download [Driver](https://www.tp-link.com/de/support/download/archer-t4u/v3/).
