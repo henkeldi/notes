@@ -4,17 +4,22 @@
 */etc/network/interfaces*
 
 ```bash
+auto eth0
+iface eth0 inet static
+  address 192.168.6.1
+  netmask 255.255.255.0
+
 auto wlan0
 iface wlan0 inet static
-	post-up /usr/sbin/hostapd -B /etc/hostapd/hostapd.conf
-	post-up service dnsmasq restart
-    address 192.168.0.1
-    netmask 255.255.255.0
+  hostapd /etc/hostapd/hostapd.conf
+  post-up service dnsmasq restart
+  address 192.168.4.1
+  netmask 255.255.255.0
 
-allow-hotplug wlan1
+auto wlan1
 iface wlan1 inet dhcp
-	post-up iptables-restore < /etc/iptables/rules.v4
-	wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
+  post-up iptables-restore < /etc/iptables/rules.v4
+  wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
 ```
 
 Prevent Networkmanager from managing the interface
