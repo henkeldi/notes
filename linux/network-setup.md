@@ -122,6 +122,17 @@ Host jetson
   User jetson
 ```
 
+# Inputrc
+
+*~/.inputrc*
+
+```bash
+## arrow up
+"\e[A":history-search-backward
+## arrow down
+"\e[B":history-search-forward
+```
+
 ## Build wifi-driver for Jetson Nano
 
 Download [Driver](https://www.tp-link.com/de/support/download/archer-t4u/v3/).
