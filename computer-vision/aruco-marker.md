@@ -42,4 +42,4 @@ cv2.imwrite('img.png', img)
 ```
 Example Output:
 
-![Aruco Marker](./img/aruco-marker-example.png)
+![Aruco Marker](./images/aruco-marker-example.png)
