@@ -41,4 +41,5 @@ img = cv2.aruco.drawMarker(d, 0, 1000)
 cv2.imwrite('img.png', img)
 ```
 Example Output:
+
 <img src="./images/aruco-marker-example.png" width="256">
