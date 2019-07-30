@@ -14,7 +14,9 @@ rm 4.1.1.tar.gz
 wget https://github.com/opencv/opencv_contrib/archive/4.1.1.tar.gz
 tar xvf 4.1.1.tar.gz
 rm 4.1.1.tar.gz
-cmake -DOPENCV_EXTRA_MODULES_PATH=$HOME/src/opencv_contrib-4.1.1/modules -DCMAKE_BUILD_TYPE=RELEASE -DBUILD_EXAMPLES=OFF -DBUILD_DOCS=OFF -DBUILD_PERF_TESTS=OFF -DBUILD_TESTS=OFF -DENABLE_PRECOMPILED_HEADERS=OFF ..
+cmake -DOPENCV_EXTRA_MODULES_PATH=$HOME/src/opencv_contrib-4.1.1/modules\
+      -DCMAKE_BUILD_TYPE=RELEASE -DBUILD_EXAMPLES=OFF -DBUILD_DOCS=OFF\
+      -DBUILD_PERF_TESTS=OFF -DBUILD_TESTS=OFF -DENABLE_PRECOMPILED_HEADERS=OFF ..
 make -j4
 sudo make install
 ```
