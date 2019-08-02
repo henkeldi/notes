@@ -132,6 +132,12 @@ Host jetson
 ## arrow down
 "\e[B":history-search-forward
 ```
+# Disable Error Report
+
+*/etc/default/apport*
+```
+enabled=0
+```
 
 ## Build wifi-driver for Jetson Nano
 
