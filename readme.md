@@ -10,8 +10,8 @@
 
 ### Robotics
 
-* [ROS 2.0](ros/nodes-2.md)
-* Writing [ROS 1.0](ros/nodes.md) Nodes
+* [ROS 1.0](ros/ros-1.0.md)
+* [ROS 2.0](ros/ros-2.0.md)
 
 ### Computer Vision
 
