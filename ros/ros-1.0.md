@@ -141,12 +141,12 @@ import cv2
 bridge = CvBridge()
 
 def callback(data):
-	try:
-		cv_image = bridge.imgmsg_to_cv2(data, "bgr8")
-	except CvBridgeError as e:
-		print e
-	cv2.imshow("Image window", cv_image)
-	cv2.waitKey(1)
+    try:
+        cv_image = bridge.imgmsg_to_cv2(data, "bgr8")
+    except CvBridgeError as e:
+        print e
+    cv2.imshow("Image window", cv_image)
+    cv2.waitKey(1)
 
 rospy.init_node("<node-name>")
 rospy.Subscriber("/rgb/image", Image, callback)
