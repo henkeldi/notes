@@ -19,7 +19,7 @@
 * [Visual Odometry](computer-vision/visual-odometry.md)
 * [Aruco Marker](computer-vision/aruco-marker.md)
 
-### Simulation Technology
+### Simulation
 
 * [Structuring a Simulation](simulation-technology/structure.md)
 * [Integrators](simulation-technology/integrators.md)
@@ -41,7 +41,7 @@
 * [Camera X](android/camera-x.md)
 * [Speech Recognizer](android/speech-recognizer.md)
 
-### Web development
+### Web
 
 * [HTTPS](web/https.md)
 * [Setup Typescript React Project](web/setup-typescript-react-project.md)
