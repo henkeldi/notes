@@ -259,9 +259,120 @@ class SubscriberNode: NodeMain {
 </details>
 
 <details><summary>Service</summary>
+
+```kotlin
+
+
+import org.ros.concurrent.CancellableLoop
+import org.ros.namespace.GraphName
+import org.ros.node.*
+import java.net.URI
+
+fun main(args: Array<String>) {
+    val nodeConfig = NodeConfiguration.newPublic("127.0.0.1", URI.create("http://127.0.0.1:11311"))
+    DefaultNodeMainExecutor.newDefault().execute(SubscriberNode(), nodeConfig)
+}
+
+class ServiceServerNode: NodeMain {
+    override fun getDefaultNodeName(): GraphName {return GraphName.of("SubscriberNode")}
+    override fun onShutdownComplete(node: Node?) {}
+    override fun onShutdown(node: Node?) {}
+    override fun onError(node: Node?, throwable: Throwable?) {}
+    override fun onStart(connectedNode: ConnectedNode?) {
+        node?.newServiceServer<SetBoolRequest, SetBoolResponse>("<service-name>", SetBool._TYPE) { request, response ->
+            request.data // Do something with it
+            response.message = ""
+            response.success = true
+        }
+    }
+}
+```
 </details>
 
-<details><summary>Service Client</summary>
+
+<details><summary>Service Client (Simple)</summary>
+
+```kotlin
+import std_srvs.SetBool
+import std_srvs.SetBoolRequest
+import std_srvs.SetBoolResponse
+
+class ServiceServerNode: NodeMain {
+    private var setValueSrv: ServiceClient<SetBoolRequest, SetBoolResponse>? = null
+
+    override fun getDefaultNodeName(): GraphName {return GraphName.of("<node-name>")}
+    override fun onShutdownComplete(node: Node?) {}
+    override fun onShutdown(node: Node?) {}
+    override fun onError(node: Node?, throwable: Throwable?) {}
+    override fun onStart(connectedNode: ConnectedNode?) {
+    }
+```
+</details>
+
+<details><summary>Service Client (with Coroutines)</summary>
+    
+```kotlin
+import std_srvs.SetBool
+import std_srvs.SetBoolRequest
+import std_srvs.SetBoolResponse
+
+class ServiceServerNode: NodeMain {
+    private var setValueSrv: ServiceClient<SetBoolRequest, SetBoolResponse>? = null
+
+    suspend fun setValue(value:Boolean):Boolean = suspendCoroutine {
+        asyncServiceCall(setValueSrv, it, {req->req.data = value}, {res->res.success})
+    }
+
+    override fun getDefaultNodeName(): GraphName {return GraphName.of("<node-name>")}
+    override fun onShutdownComplete(node: Node?) {}
+    override fun onShutdown(node: Node?) {}
+    override fun onError(node: Node?, throwable: Throwable?) {}
+    override fun onStart(connectedNode: ConnectedNode?) {
+        try {
+            setValueSrv = node?.newServiceClient("<client-path>", SetBool._TYPE)
+        } catch (e: ServiceNotFoundException) {
+            e.printStackTrace()
+        }
+    }
+
+    private fun <TRequest, TResponse>asyncServiceCall(
+            client:ServiceClient<TRequest, TResponse>?,
+            continuation: Continuation<Boolean>,
+            messageCreator:((TRequest)->Unit),
+            successValidator:((TResponse)->Boolean)) {
+        if (client != null) {
+            val request = client.newMessage()
+            Log.i(TAG, "Sending request = $request")
+            messageCreator(request)
+            client.call(request, object : ServiceResponseListener<TResponse> {
+                override fun onSuccess(response: TResponse?) {
+                    if (response !== null) {
+                        Log.i(TAG, "Call was successful")
+                        val success = successValidator(response)
+                        Log.i(TAG, "Successvalidator repords response to be successful = $success")
+                        continuation.resume(success)
+                    } else {
+                        Log.e(TAG, "response was null")
+                        continuation.resume(false)
+                    }
+                }
+                override fun onFailure(e: RemoteException?) {
+                    if (e != null) {
+                        Log.e(TAG, "onFailure: $e")
+                        continuation.resume(false)
+                    } else {
+                        Log.e(TAG, "RemoteException was null")
+                        continuation.resume(false)
+                    }
+                }
+            })
+        } else {
+            Log.e(TAG, "client was null")
+            continuation.resume(false)
+        }
+    }
+}
+```
 </details>
 
 </details>
