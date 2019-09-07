@@ -12,6 +12,7 @@
 
 * [ROS 1.0](ros/ros-1.0.md)
 * [ROS 2.0](ros/ros-2.0.md)
+* [Control Theory](./robotics/control.md)
 
 ### Computer Vision
 
