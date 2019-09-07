@@ -43,3 +43,23 @@ cv2.imwrite('img.png', img)
 Example Output:
 
 <img src="./images/aruco-marker-example.png" width="256">
+
+## Detect Marker
+
+```cpp
+#include "opencv2/opencv.hpp"
+#include "opencv2/aruco.hpp"
+
+
+
+cv::Mat gray;
+auto dictionary = cv::aruco::getPredefinedDictionary(cv::aruco::DICT_4X4_50);
+std::vector<std::vector<cv::Point2f>> corners, rejected;
+std::vector<int> ids;
+auto detectorParams = cv::aruco::DetectorParameters::create();
+cv::cvtColor(image, gray, cv::COLOR_BGR2GRAY);
+cv::aruco::detectMarkers(gray, dictionary, corners, ids, detectorParams, rejected);
+
+
+```
+
