@@ -62,7 +62,7 @@ std::vector<std::vector<cv::Point2f>> rejected;
 cv::aruco::detectMarkers(gray, dictionary, id_corners, ids, detectorParams, rejected);
 
 for (int i = 0; i < ids.size(); i++) {
-	int id = ids[i];
+    int id = ids[i];
     auto corners = id_corners[i];
 }
 ```
