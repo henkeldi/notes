@@ -80,3 +80,9 @@ target_link_libraries(main
    tensorflow_cc
    ${Tensorflow_DIR}/bazel-bin/tensorflow/libtensorflow_framework.so.1.14.0)
 ```
+
+** Building the library: **
+
+```bash
+bazel build --config=cuda --config=v2 //tensorflow:libtensorflow_cc.so
+```
