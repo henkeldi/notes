@@ -1,6 +1,12 @@
 
 # Tensorflow API C++
 
+**Building the library:**
+
+```bash
+bazel build --config=cuda --config=v2 //tensorflow:libtensorflow_cc.so
+```
+
 **main.cpp:**
 
 ```c++
@@ -81,8 +87,3 @@ target_link_libraries(main
    ${Tensorflow_DIR}/bazel-bin/tensorflow/libtensorflow_framework.so.1.14.0)
 ```
 
-** Building the library: **
-
-```bash
-bazel build --config=cuda --config=v2 //tensorflow:libtensorflow_cc.so
-```
