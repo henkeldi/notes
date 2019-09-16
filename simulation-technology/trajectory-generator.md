@@ -108,22 +108,21 @@ def trajectory(t, t0, s0, sf, v_max, a_max):
 ```
 
 ```cpp
-void trajectory(double t, double t0, double s0, double sf, double v_max, double a_max, double* a, double* v, double* s) {
+void trajectory(
+        double t, double t0, double s0,
+        double sf, double v_max, double a_max,
+        double* a, double* v, double* s) {
     double sign = (sf - s0 >= 0.0)?1:-1;
     double delta_s = std::abs(sf - s0);
     double v_star = std::min(v_max, std::sqrt(delta_s*a_max));
-
     double delta_s0 = (0.5 * v_star * v_star) / a_max;
     double delta_s1 = delta_s - (v_star * v_star)  / a_max;
-
     double t1 = t0 + v_star / a_max;
     double t2 = t0 + delta_s / v_star;
     double t3 = t2 + v_star / a_max;
-
     *a = 0;
     *v = 0;
     *s = 0;
-
     if (t >= t0 && t < t1) {
         *a = sign * a_max;
         *v = sign * a_max * (t - t0);
