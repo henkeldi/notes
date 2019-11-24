@@ -60,4 +60,5 @@
 
 ### C++
 
+* [C++](cpp/cpp.md)
 * [CMake](cpp/cmake.md)
