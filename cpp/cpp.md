@@ -18,6 +18,45 @@ Aborted
 
 </details>
 
+<details><summary>cctype</summary>
+
+```cpp
+// 0-9a-zA-Z
+isalnum()
+
+// a-zA-Z
+isalpha()
+
+// tab (\t), space( )
+isblank()
+
+// NUL, \t, \f, \v, \n, \r, DEL
+iscntrl()
+
+// 0-9
+isdigit()
+
+// a-z
+islower()
+
+// A-Z
+isupper()
+
+// all printable characters
+isprint()
+
+// !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
+ispunct()
+
+// \t, \f, \v, \n, \r, space( )
+isspace()
+
+// 0123456789 ABCDEF abcdef
+isxdigit()
+```
+
+</details>
+
 ### Misc
 
 <details><summary>algorithm</summary>
