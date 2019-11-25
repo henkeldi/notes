@@ -96,17 +96,17 @@ log(-1) failed: Numerical argument out of domain
 <details><summary>ciso646</summary>
 
 ```cpp
-// macro -> operator
-// and -> &&
+// macro  -> operator
+// and    -> &&
 // and_eq -> &=
 // bitand -> &
-// bitor -> |
-// compl -> ~
-// not -> !
+// bitor  -> |
+// compl  -> ~
+// not    -> !
 // not_eq -> !=
-// or -> ||
-// or_eq -> |=
-// xor -> ^
+// or     -> ||
+// or_eq  -> |=
+// xor    -> ^
 // xor_eq -> ^=
 ```
 
@@ -114,26 +114,62 @@ log(-1) failed: Numerical argument out of domain
 
 <details><summary>climits</summary>
 
+[climits](http://www.cplusplus.com/reference/climits/)
+
 ```cpp
-// CHAR_BIT -> Number of bits in a char object (byte)
-// SCHAR_MIN -> Minimum value for an object of type signed char
-// SCHAR_MAX -> Maximum value for an object of type signed char
-// UCHAR_MAX -> Maximum value for an object of type unsigned char
-// CHAR_MIN -> Minimum value for an object of type char
-// CHAR_MAX -> Maximum value for an object of type char
+// CHAR_BIT   -> Number of bits in a char object (byte)
+// SCHAR_MIN  -> Minimum value for an object of type signed char
+// SCHAR_MAX  -> Maximum value for an object of type signed char
+// UCHAR_MAX  -> Maximum value for an object of type unsigned char
+// CHAR_MIN   -> Minimum value for an object of type char
+// CHAR_MAX   -> Maximum value for an object of type char
 // MB_LEN_MAX -> Maximum number of bytes in a multibyte character, for any locale
-// SHRT_MIN -> Minimum value for an object of type short int
-// SHRT_MAX -> Maximum value for an object of type short int
-// USHRT_MAX -> Maximum value for an object of type unsigned short int
-// INT_MIN -> Minimum value for an object of type int
-// INT_MAX -> Maximum value for an object of type int
-// UINT_MAX -> Maximum value for an object of type unsigned int
-// LONG_MIN -> Minimum value for an object of type long int
-// LONG_MAX -> Maximum value for an object of type long int
-// ULONG_MAX -> Maximum value for an object of type unsigned long int
-// LLONG_MIN -> Minimum value for an object of type long long int
-// LLONG_MAX -> Maximum value for an object of type long long int
+// SHRT_MIN   -> Minimum value for an object of type short int
+// SHRT_MAX   -> Maximum value for an object of type short int
+// USHRT_MAX  -> Maximum value for an object of type unsigned short int
+// INT_MIN    -> Minimum value for an object of type int
+// INT_MAX    -> Maximum value for an object of type int
+// UINT_MAX   -> Maximum value for an object of type unsigned int
+// LONG_MIN   -> Minimum value for an object of type long int
+// LONG_MAX   -> Maximum value for an object of type long int
+// ULONG_MAX  -> Maximum value for an object of type unsigned long int
+// LLONG_MIN  -> Minimum value for an object of type long long int
+// LLONG_MAX  -> Maximum value for an object of type long long int
 // ULLONG_MAX -> Maximum value for an object of type unsigned long long int
+```
+
+</details>
+
+<details><summary>clocale</summary>
+
+[clocale](http://www.cplusplus.com/reference/clocale/)
+
+```cpp
+// Return name of current locale:
+setlocale(LC_ALL, NULL);
+
+setlocale(LC_ALL, "C");
+// setlocale(<category>, <locale>);
+
+// category:
+// LC_ALL -> The entire locale.
+// LC_COLLATE -> Affects the behavior of strcoll and strxfrm.
+// LC_CTYPE -> Affects character handling functions (all functions of <cctype>, except isdigit and isxdigit), and the multibyte and wide character functions.
+// LC_MONETARY -> Affects monetary formatting information returned by localeconv.
+// LC_NUMERIC -> Affects the decimal-point character in formatted input/output operations and string formatting functions, as well as non-monetary information returned by localeconv.
+// LC_TIME -> Affects the behavior of strftime.
+
+// locale:
+// "C" -> Minimal "C" locale
+// "" -> Environment's default locale
+
+struct lconv * lc;
+lc = localeconv();
+printf("International Currency Symbol: %s\n",lc->int_curr_symbol);
+```
+
+```bash
+Local Currency Symbol: $
 ```
 
 </details>
