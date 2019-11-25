@@ -112,6 +112,32 @@ log(-1) failed: Numerical argument out of domain
 
 </details>
 
+<details><summary>climits</summary>
+
+```cpp
+// CHAR_BIT -> Number of bits in a char object (byte)
+// SCHAR_MIN -> Minimum value for an object of type signed char
+// SCHAR_MAX -> Maximum value for an object of type signed char
+// UCHAR_MAX -> Maximum value for an object of type unsigned char
+// CHAR_MIN -> Minimum value for an object of type char
+// CHAR_MAX -> Maximum value for an object of type char
+// MB_LEN_MAX -> Maximum number of bytes in a multibyte character, for any locale
+// SHRT_MIN -> Minimum value for an object of type short int
+// SHRT_MAX -> Maximum value for an object of type short int
+// USHRT_MAX -> Maximum value for an object of type unsigned short int
+// INT_MIN -> Minimum value for an object of type int
+// INT_MAX -> Maximum value for an object of type int
+// UINT_MAX -> Maximum value for an object of type unsigned int
+// LONG_MIN -> Minimum value for an object of type long int
+// LONG_MAX -> Maximum value for an object of type long int
+// ULONG_MAX -> Maximum value for an object of type unsigned long int
+// LLONG_MIN -> Minimum value for an object of type long long int
+// LLONG_MAX -> Maximum value for an object of type long long int
+// ULLONG_MAX -> Maximum value for an object of type unsigned long long int
+```
+
+</details>
+
 ### Misc
 
 <details><summary>algorithm</summary>
