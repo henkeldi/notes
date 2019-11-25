@@ -93,6 +93,25 @@ log(-1) failed: Numerical argument out of domain
 
 </details>
 
+<details><summary>ciso646</summary>
+
+```cpp
+// macro -> operator
+// and -> &&
+// and_eq -> &=
+// bitand -> &
+// bitor -> |
+// compl -> ~
+// not -> !
+// not_eq -> !=
+// or -> ||
+// or_eq -> |=
+// xor -> ^
+// xor_eq -> ^=
+```
+
+</details>
+
 ### Misc
 
 <details><summary>algorithm</summary>
