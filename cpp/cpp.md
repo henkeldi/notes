@@ -57,6 +57,42 @@ isxdigit()
 
 </details>
 
+<details><summary>cerrno</summary>
+
+```cpp
+double not_a_number = std::log(-1.0);
+if (errno == EDOM) {
+    std::cout << "log(-1) failed: " << std::strerror(errno) << '\n';
+}
+
+// E2BIG -> Argument list too long
+// EACCES -> Permission denied
+// EADDRINUSE -> Address in use
+// EADDRNOTAVAIL -> Address not available
+// EAFNOSUPPORT ->  Address family not supported
+// EAGAIN -> Resource unavailable, try again
+// EALREADY -> Connection already in progress
+// EBADF -> Bad file descriptor
+// EBADMSG -> Bad message
+// EBUSY -> Device or resource busy
+// ECANCELED -> Operation canceled
+// ECHILD -> No child processes
+// ECONNABORTED -> Connection aborted
+// ECONNREFUSED -> Connection refused
+// ECONNRESET -> Connection reset
+// EDEADLK -> Resource deadlock would occur
+// EDESTADDRREQ -> Destination address required
+// EDOM -> Mathematics argument out of domain of function
+// EEXIST -> File exists
+// ...
+```
+
+```bash
+log(-1) failed: Numerical argument out of domain
+```
+
+</details>
+
 ### Misc
 
 <details><summary>algorithm</summary>
