@@ -274,7 +274,7 @@ isunordered(x, y)
 
 </details>
 
-<details><summary>signal</summary>
+<details><summary>csignal</summary>
 
 ```c++
 // Integral type of an object that can be accessed as an atomic entity,
@@ -305,6 +305,35 @@ int main () {
 
   return 0;
 }
+```
+
+</details>
+
+<details><summary>cargs</summary>
+
+```c++
+void PrintFloats (int n, ...) {
+  int i;
+  double val;
+  printf ("Printing floats:");
+  va_list vl;
+  va_start(vl,n);
+  for (i=0;i<n;i++) {
+    val=va_arg(vl,double);
+    printf (" [%.2f]",val);
+  }
+  va_end(vl);
+  printf ("\n");
+}
+
+int main () {
+  PrintFloats (3,3.14159,2.71828,1.41421);
+  return 0;
+}
+```
+
+```bash
+Printing floats: [3.14] [2.72] [1.41]
 ```
 
 </details>
@@ -340,6 +369,8 @@ if (std::all_of(v.cbegin(), v.cend(), [](int i){ return i % 2 == 0; })) {
 All numbers are even
 ```
 </details>
+
+
 
 <details><summary>find</summary>
 
