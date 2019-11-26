@@ -240,7 +240,7 @@ remainder()
 remquo()
 
 // Floating-point manipulation functions
-copysign()
+copysign(x, y)  // ->  Returns a value with the magnitude of x and the sign of y.
 nan()
 nextafter()
 nexttoward()
@@ -253,7 +253,7 @@ fmin()
 // Other functions
 fabs()
 abs()
-fma()
+fma() // -> Multiply-add
 
 // Classification macro / functions
 fpclassify()
@@ -270,6 +270,41 @@ isless(x, y)
 islessqual(x, y)
 islessgreater(x, y)
 isunordered(x, y)
+```
+
+</details>
+
+<details><summary>signal</summary>
+
+```c++
+// Integral type of an object that can be accessed as an atomic entity,
+// even in the presence of asynchronous signals.
+sig_atomic_t signaled = 0;
+
+void my_handler(int param) {
+  signaled = 1;
+}
+
+int main () {
+  void (*prev_handler)(int);
+
+  prev_handler = signal(SIGINT, my_handler);
+  // prev_handler = signal(SIGINT, SIG_DFL); // Default handler
+  // prev_handler = signal(SIGINT, SIG_IGN); // Ignore signal
+  // SIGABRT -> (Signal Abort) Abnormal termination, such as is initiated by the abort function.
+  // SIGFPE -> Signal Floating-Point Exception
+  // SIGILL -> Signal Illegal Instruction
+  // SIGINT -> CTRL+C
+  // SIGSEGV -> Signal Segmentation Violation
+  // SIGTERM -> Termination request sent to program.
+
+  // Generates a signal
+  raise(SIGINT);
+  
+  printf ("signaled is %d.\n",signaled);
+
+  return 0;
+}
 ```
 
 </details>
