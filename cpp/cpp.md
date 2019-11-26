@@ -338,6 +338,15 @@ Printing floats: [3.14] [2.72] [1.41]
 
 </details>
 
+<details><summary>cstdbool</summary>
+
+```c++
+true  // -> 1
+false // -> 0
+```
+
+</details>
+
 ### Misc
 
 <details><summary>algorithm</summary>
