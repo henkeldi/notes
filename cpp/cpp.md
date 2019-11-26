@@ -165,11 +165,111 @@ setlocale(LC_ALL, "C");
 
 struct lconv * lc;
 lc = localeconv();
-printf("International Currency Symbol: %s\n",lc->int_curr_symbol);
+printf("Local Currency Symbol: %s\n",lc->currency_symbol);
 ```
 
 ```bash
 Local Currency Symbol: $
+```
+
+</details>
+
+<details><summary>cmath</summary>
+
+[cmath](http://www.cplusplus.com/reference/cmath/)
+
+```cpp
+// Trigonometric functions
+cos()
+sin()
+tan()
+acos()
+asin()
+atan()
+atan2(x, y)
+
+// Hyperbolic functions
+cosh()
+sinh()
+tanh()
+acosh()
+asinh()
+atanh()
+
+// Exponential and logarithmic functions
+exp()
+frexp()
+ldexp()
+log()
+log10()
+modf()
+exp2()
+expm1()
+ilogb()
+log1p()
+log2()
+logb()
+scalbn()
+scalbln()
+
+// Power functions
+pow()
+sqrt()
+cbrt()
+hypot()
+
+// Error and gamma functions
+erf()
+erfc()
+tgamma()
+lgamma()
+
+// Rounding and remainder functions
+cell()
+floor()
+fmod()
+trunc()
+round()
+lround()
+llround()
+rint()
+lrint()
+llrint()
+nearbyint()
+remainder()
+remquo()
+
+// Floating-point manipulation functions
+copysign()
+nan()
+nextafter()
+nexttoward()
+
+// Minimum, maximum, difference functions
+fdim()
+fmax()
+fmin()
+
+// Other functions
+fabs()
+abs()
+fma()
+
+// Classification macro / functions
+fpclassify()
+isfinite()
+isinf()
+isnan()
+isnormal()
+signbit()
+
+// Comparison macro / functions
+isgreater(x, y)
+isgreaterequal(x, y)
+isless(x, y)
+islessqual(x, y)
+islessgreater(x, y)
+isunordered(x, y)
 ```
 
 </details>
