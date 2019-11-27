@@ -374,6 +374,35 @@ for (std::size_t i = 0; i != a.size(); ++i) {
 
 </details>
 
+<details><summary>cstdint</summary>
+
+```c++
+int8_t
+int16_t
+int32_t
+int64_t
+
+uint8_t
+uint16_t
+uint32_t
+uint64_t
+
+INT8_{MIN, MAX}
+INT16_{MIN, MAX}
+INT32_{MIN, MAX}
+INT64_{MIN, MAX}
+
+UINT8_{MIN, MAX}
+UINT16_{MIN, MAX}
+UINT32_{MIN, MAX}
+UINT64_{MIN, MAX}
+
+SIZE_MAX // maximum of std::size_t
+```
+
+</details>
+
+
 ### Misc
 
 <details><summary>algorithm</summary>
