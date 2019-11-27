@@ -347,6 +347,33 @@ false // -> 0
 
 </details>
 
+<details><summary>cstddef</summary>
+
+```c++
+// NULL
+int* p = NULL;
+
+// offsetof
+struct S {
+    char c;
+    double d;
+};
+offsetof(S, c)
+
+// size_t
+std::array<std::size_t, 10> a;
+for (std::size_t i = 0; i != a.size(); ++i) {
+  a[i] = i;
+}
+
+// ptrdiff_t
+// nullptr_t
+// max_align_t
+// byte
+```
+
+</details>
+
 ### Misc
 
 <details><summary>algorithm</summary>
