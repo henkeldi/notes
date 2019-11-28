@@ -402,6 +402,48 @@ SIZE_MAX // maximum of std::size_t
 
 </details>
 
+<details><summary>cstdio</summary>
+
+```c++
+remove("myfile.txt")
+rename("oldfile.txt", "newfile.txt");
+
+FILE* pFile = tmpfile();
+tmpnam(); // Generate temporary filename
+
+FILE* pFile = fopen("myfile.txt","wt");
+// mode:
+// r -> read
+// w -> write, will overwrite existing file
+// a -> append
+// r+ -> open for update (file must exist)
+// w+ -> open for input/output
+// a+ -> open for update; writes at the end
+
+setbuf(pFile1, buffer);
+fputs("This is sent to a buffered stream", pFile1);
+fflush(pFile1);
+
+setbuf(pFile2, NULL);
+fputs("This is sent to an unbuffered stream", pFile2);
+
+fprintf(pFile, "fclose example");
+
+fputs ("test", pFile);
+fflush(pFile);
+
+char mybuffer[80];
+fgets(mybuffer, 80, pFile);
+
+freopen("myfile.txt", "w", stdout);
+printf("This sentence is redirected to a file.");
+
+fclose (stdout);
+
+```
+
+</details>
+
 
 ### Misc
 
