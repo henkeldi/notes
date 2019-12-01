@@ -743,7 +743,6 @@ std::cout << (foo^bar) << '\n';        // 0101
 0101
 ```
 
-
 #### Convert
 
 ```c++
@@ -862,5 +861,71 @@ aba
 baa
 ```
 </details>
+
+</details>
+
+<details><summary>tuple</summary>
+
+#### Initialize
+
+```c++
+std::tuple<int, char> foo (10,'x');
+auto bar = std::make_tuple("test", 3.1, 14, 'y');
+```
+
+#### Access element
+
+```c++
+std::get<2>(bar) = 100;
+
+std::tuple_element<0,decltype(bar)>::type first = std::get<0>(bar);
+std::tuple_element<1,decltype(bar)>::type second = std::get<1>(bar);
+```
+
+#### Unpack elements
+
+```c++
+std::tie (myint, mychar) = foo;
+std::tie (std::ignore, std::ignore, myint, mychar) = bar;
+```
+#### Element count
+
+```c++
+std::tuple_size<decltype(mytuple)>::value
+```
+
+#### Tuple as funktion argument
+
+```c++
+void print_pack(std::tuple<std::string&&,int&&> pack) {
+  std::cout << std::get<0>(pack) << ", " << std::get<1>(pack) << '\n';
+}
+
+print_pack(std::forward_as_tuple("John Smith", 25));
+print_pack(std::forward_as_tuple("John Daniels", 22));
+```
+
+#### Concatenate tuples
+
+```c++
+#include <utility> // std::pair
+
+std::tuple<float, std::string> mytuple (3.14,"pi");
+std::pair<int, char> mypair (10,'a');
+
+auto myauto = std::tuple_cat( mytuple, std::tuple<int,char>(mypair));
+
+std::cout << std::get<0>(myauto) << '\n';
+std::cout << std::get<1>(myauto) << '\n';
+std::cout << std::get<2>(myauto) << '\n';
+std::cout << std::get<3>(myauto) << '\n';
+```
+
+```bash
+3.14
+pi
+10
+a
+```
 
 </details>
