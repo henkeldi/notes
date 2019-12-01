@@ -655,6 +655,111 @@ first.swap(second);
 
 </details>
 
+<details><summary>bitset</summary>
+
+[reference](http://www.cplusplus.com/reference/bitset/bitset/)
+
+#### Initialize
+
+```c++
+std::bitset<16> foo;
+std::bitset<16> bar(0xfa2);
+std::bitset<16> baz(std::string("0101111001"));
+```
+
+#### Access data
+
+```c++
+// Count ones:
+foo.count();
+
+// Get size
+foo.size();
+
+// Check if i-th bit is set
+foo.test(i);
+
+// Check if any bit is set
+foo.any();
+
+// Check if all bits are zero
+foo.none();
+
+// Check if all bits are one
+foo.all();
+
+// Set A bit
+foo.set(); // Set all bits to 1
+foo.set(1, 0); // Set 2nd bit to 0
+foo.set(1); // Set 2nd bit to 1
+
+// Set all bits to zero
+foo.reset() // Set all bits to 0
+foo.reset(1) // Set 2nd bit to 0
+
+// flip bit (invert)
+foo.flip() // flip all bits
+foo.flip(1) // flip 2nd bit
+```
+
+#### Applicable operators
+
+```c++
+std::bitset<4> foo (std::string("1001"));
+std::bitset<4> bar (std::string("0011"));
+
+std::cout << (foo^=bar) << '\n';       // 1010 (XOR,assign)
+std::cout << (foo&=bar) << '\n';       // 0010 (AND,assign)
+std::cout << (foo|=bar) << '\n';       // 0011 (OR,assign)
+
+std::cout << (foo<<=2) << '\n';        // 1100 (SHL,assign)
+std::cout << (foo>>=1) << '\n';        // 0110 (SHR,assign)
+
+std::cout << (~bar) << '\n';           // 1100 (NOT)
+std::cout << (bar<<1) << '\n';         // 0110 (SHL)
+std::cout << (bar>>1) << '\n';         // 0001 (SHR)
+
+std::cout << (foo==bar) << '\n';       // false (0110==0011)
+std::cout << (foo!=bar) << '\n';       // true  (0110!=0011)
+
+std::cout << (foo&bar) << '\n';        // 0010
+std::cout << (foo|bar) << '\n';        // 0111
+std::cout << (foo^bar) << '\n';        // 0101
+```
+
+```bash
+1010
+0010
+0011
+1100
+0110
+1100
+0110
+0001
+0
+1
+0010
+0111
+0101
+```
+
+
+#### Convert
+
+```c++
+#include <string>
+// To string
+foo.to_string<char,std::string::traits_type,std::string::allocator_type>();
+
+// To unsigned long
+foo.to_ulong()
+
+// To unsigned long long
+foo.to_ullong()
+```
+
+</details>
+
 ### Misc
 
 <details><summary>algorithm</summary>
