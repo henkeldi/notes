@@ -404,7 +404,7 @@ SIZE_MAX // maximum of std::size_t
 
 <details><summary>cstdio</summary>
 
-* Operations on files
+**Operations on files**
 
 <details><summary>remove</summary>
 
@@ -462,7 +462,7 @@ tmpnam(buffer);
 
 </details>
 
-* File access
+**File access**
 
 <details><summary>fclose</summary>
 
@@ -579,7 +579,86 @@ fclose (pFile);
 
 </details>
 
-* Formatted input/output
+**Formatted input/output**
+
+<details><summary>array</summary>
+
+#### Initialize
+
+```c++
+std::array<int, 5> myarray = { 2, 16, 77, 34, 50 };
+```
+
+#### Iterate
+
+```c++
+for (auto it = myarray.begin(); it != myarray.end(); ++it) {
+  std::cout << ' ' << *it;
+}
+```
+
+```bash
+2 16 77 34 50
+```
+
+#### Iterate reversed
+
+```c++
+for (auto it = myarray.rbegin(); it != myarray.rend(); ++rit) {
+  std::cout << ' ' << *rit;
+}
+```
+
+```bash
+50 34 77 16 2
+```
+
+#### Fill with values
+
+```c++
+myarray.fill(5);
+```
+
+```bash
+5 5 5 5 5 5
+```
+
+#### Access data
+
+```c++
+// Without bounds check
+for (int i=0; i<10; i++) {
+  myarray[i]=i;
+}
+
+// With bounds check
+// Throws out_of_range exception
+for (int i=0; i<10; i++) {
+  myarray.at(i) = i+1;
+}
+
+for (int& x : myarray) {
+  std::cout << ' ' << x;
+}
+
+myarray.first();
+myarray.back();
+myarray.front() = 100;
+
+// Access raw associated data:
+myarray.data()
+```
+
+#### Swap two arrays
+
+```c++
+first.swap(second);
+// must be same type and length
+```
+
+</details>
+
+### Containers
 
 </details>
 
