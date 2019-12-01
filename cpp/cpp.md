@@ -404,21 +404,138 @@ SIZE_MAX // maximum of std::size_t
 
 <details><summary>cstdio</summary>
 
+* Operations on files
+
+<details><summary>remove</summary>
+
+* [Remove file](http://www.cplusplus.com/reference/cstdio/remove/)
+
 ```c++
-remove("myfile.txt")
-rename("oldfile.txt", "newfile.txt");
+if (remove( "myfile.txt" ) != 0) {
+  perror( "Error deleting file" );
+} else {
+  puts( "File successfully deleted" );
+}
+```
 
-FILE* pFile = tmpfile();
-tmpnam(); // Generate temporary filename
+</details>
 
-FILE* pFile = fopen("myfile.txt","wt");
+<details><summary>rename</summary>
+
+* [Rename file](http://www.cplusplus.com/reference/cstdio/rename/)
+
+```c++
+result= rename("oldname.txt", "newname.txt");
+if (result == 0) {
+  puts("File successfully renamed");
+} else {
+  perror("Error renaming file");
+}
+```
+
+</details>
+
+<details><summary>tmpfile</summary>
+
+* [Open a temporary file](http://www.cplusplus.com/reference/cstdio/tmpfile/)
+
+```c++
+FILE * pFile;
+pFile = tmpfile();
+```
+
+</details>
+
+<details><summary>tmpnam</summary>
+
+* [Generate temporary filename](http://www.cplusplus.com/reference/cstdio/tmpnam/)
+* Prints during compile time: *warning: the use of `tmpnam' is dangerous, better use `mkstemp'*
+
+```c++
+char buffer [L_tmpnam];
+tmpnam(buffer);
+```
+
+```bash
+/tmp/fileP7OWys
+```
+
+</details>
+
+* File access
+
+<details><summary>fclose</summary>
+
+* Close file
+
+```c++
+FILE* pFile;
+pFile = fopen("myfile.txt","wt");
+fprintf(pFile, "fclose example");
+fclose(pFile);
+```
+
+</details>
+
+
+<details><summary>fflush</summary>
+
+* Flush stream
+
+```c++
+FILE* pFile;
+pFile = fopen("example.txt","r+");
+fputs("test", pFile);
+fflush(pFile);
+```
+
+</details>
+
+<details><summary>fopen</summary>
+
+* [Open file](http://www.cplusplus.com/reference/cstdio/fopen/)
+
+```c++
+FILE* pFile;
+pFile = fopen("myfile.txt", "w");
 // mode:
-// r -> read
-// w -> write, will overwrite existing file
-// a -> append
-// r+ -> open for update (file must exist)
-// w+ -> open for input/output
-// a+ -> open for update; writes at the end
+// r  -> read mode
+// w  -> write mode
+// a  -> append mode
+// r+ -> read/write mode
+// w+ -> read/write mode, overwrite if file already exists
+// a+ -> read/write mode, all output goes to end of file
+
+if (pFile!=NULL) {
+  fputs("fopen example", pFile);
+  fclose(pFile);
+}
+```
+
+</details>
+
+<details><summary>fropen</summary>
+
+* [Reopen stream with different file or mode](http://www.cplusplus.com/reference/cstdio/freopen/)
+
+```c++
+freopen("myfile.txt", "w", stdout);
+printf("This sentence is redirected to a file.");
+fclose(stdout);
+```
+
+</details>
+
+<details><summary>setbuf</summary>
+
+* [Set stream buffer](http://www.cplusplus.com/reference/cstdio/setbuf/)
+
+```c++
+char buffer[BUFSIZ];
+FILE *pFile1, *pFile2;
+
+pFile1= fopen("myfile1.txt", "w");
+pFile2= fopen("myfile2.txt", "a");
 
 setbuf(pFile1, buffer);
 fputs("This is sent to a buffered stream", pFile1);
@@ -427,23 +544,44 @@ fflush(pFile1);
 setbuf(pFile2, NULL);
 fputs("This is sent to an unbuffered stream", pFile2);
 
-fprintf(pFile, "fclose example");
-
-fputs ("test", pFile);
-fflush(pFile);
-
-char mybuffer[80];
-fgets(mybuffer, 80, pFile);
-
-freopen("myfile.txt", "w", stdout);
-printf("This sentence is redirected to a file.");
-
-fclose (stdout);
-
+fclose(pFile1);
+fclose(pFile2);
 ```
 
 </details>
 
+<details><summary>setvbuf</summary>
+
+* [Change stream buffering](http://www.cplusplus.com/reference/cstdio/setvbuf/)
+
+```c++
+FILE *pFile;
+pFile=fopen("myfile.txt", "w");
+setvbuf(pFile, NULL, _IOFBF, 1024);
+// <stream>, <buffer>, <mode>, <size>
+
+// buffer:
+//  * User allocated buffer. Shall be at least size bytes long.
+//  * If set to a null pointer, the function automatically allocates a buffer.
+
+// mode:
+//  * _IOFBF Full buffering
+//  * _IOLBF Line buffering
+//  * _IONBF No buffering
+
+// size:
+//  * in bytes
+
+// File operations here
+
+fclose (pFile);
+```
+
+</details>
+
+* Formatted input/output
+
+</details>
 
 ### Misc
 
