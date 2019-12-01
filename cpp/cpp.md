@@ -864,6 +864,66 @@ baa
 
 </details>
 
+<details><summary>complex</summary>
+
+#### Initialize
+
+```c++
+std::complex<double> first (2.0,2.0);
+std::complex<double> second (first);
+std::complex<long double> third (second);
+
+std::polar(2.0, 0.5);
+```
+
+#### Access and operations
+
+```c++
+// Imaginary part
+mycomplex.imag();
+
+// Real part
+mycomplex.real();
+
+// magnitude
+std::abs(mycomplex);
+
+// phase angle
+std::arg(mycomplex);
+
+// squared magnitude
+std::norm(mycomplex);
+
+// conjugate
+std::conj(mycomplex);
+
+// projection of the complex number x onto the Riemann sphere.
+std::proj(mycomplex);
+```
+
+#### Functions
+
+```c++
+cos(); // Cosine
+cosh(); // Hyperbolic cosine
+exp(); // Exponential
+log(); // Natural logarithm
+log10(); // Common logarithm
+pow(); // Power
+sin(); // Sine
+sinh(); // Hyperbolic sine
+sqrt(); // Square root
+tan(); // Tangent
+tanh(); // Hyperbolic tangent
+acos(); // Arc cosine
+acosh(); // Arc hyperbolic cosine
+asin(); // Arc sine
+asinh(); // Arc hyperbolic sine
+atan(); // Arc tangent
+atanh(); // Arc hyperbolic tangent
+```
+</details>
+
 <details><summary>tuple</summary>
 
 #### Initialize
