@@ -581,12 +581,26 @@ fclose (pFile);
 
 **Formatted input/output**
 
+</details>
+
+### Containers
+
 <details><summary>array</summary>
 
 #### Initialize
 
 ```c++
 std::array<int, 5> myarray = { 2, 16, 77, 34, 50 };
+```
+
+#### Fill with values
+
+```c++
+myarray.fill(5);
+```
+
+```bash
+5 5 5 5 5 5
 ```
 
 #### Iterate
@@ -613,33 +627,16 @@ for (auto it = myarray.rbegin(); it != myarray.rend(); ++rit) {
 50 34 77 16 2
 ```
 
-#### Fill with values
-
-```c++
-myarray.fill(5);
-```
-
-```bash
-5 5 5 5 5 5
-```
-
 #### Access data
 
 ```c++
-// Without bounds check
-for (int i=0; i<10; i++) {
-  myarray[i]=i;
-}
 
-// With bounds check
+// With index
+myarray[0]=i;
+
+// With index and bounds check
 // Throws out_of_range exception
-for (int i=0; i<10; i++) {
-  myarray.at(i) = i+1;
-}
-
-for (int& x : myarray) {
-  std::cout << ' ' << x;
-}
+myarray.at(0) = 1;
 
 myarray.first();
 myarray.back();
@@ -655,10 +652,6 @@ myarray.data()
 first.swap(second);
 // must be same type and length
 ```
-
-</details>
-
-### Containers
 
 </details>
 
