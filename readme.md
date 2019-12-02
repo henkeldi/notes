@@ -60,5 +60,6 @@
 
 ### C++
 
+* [Template](cpp/template.md)
 * [C++](cpp/cpp.md)
 * [CMake](cpp/cmake.md)
