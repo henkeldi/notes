@@ -28,3 +28,24 @@ exports.calculateCart = functions.firestore.document("carts/{cartId}/items/{item
 ```bash
 firebase emulators:start
 ```
+
+
+```javascript
+const functions = require('firebase-functions');
+const admin = require('firebase-admin');
+const db = admin.initializeApp().firestore();
+
+function updateRestaurantinfo(restaurantId, ratingAdded) {
+
+}
+const updateRating = functions.firestore
+  .document('/restaurants/{restaurantId}/ratings/{ratingId}')
+  .onCreate((snapshot, context) => {
+    const restaurantId = context.params.restaurantId;
+    const ratingAdded = snapshot.data().rating;
+
+    return updateRestaurantInfo(restaurantId, ratingAdded);
+  });
+
+exports.updateRating = updateRating;
+```
