@@ -989,3 +989,42 @@ a
 ```
 
 </details>
+
+
+
+<details><summary>valarray</summary>
+
+#### Initialize
+
+```c++
+int init[]= {10,20,30,40};
+std::valarray<int> first;                             // (empty)
+std::valarray<int> second (5);                        // 0 0 0 0 0
+std::valarray<int> third (10,3);                      // 10 10 10
+std::valarray<int> fourth (init,4);                   // 10 20 30 40
+std::valarray<int> fifth (fourth);                    // 10 20 30 40
+std::valarray<int> sixth (fifth[std::slice(1,2,1)]);  // 20 30
+```
+
+#### Operations
+
+```c++
+abs
+exp
+log
+log10
+pow
+sqrt
+sin
+cos
+tan
+asin
+acos
+atan
+atan2
+sinh
+cosh
+tanh
+```
+
+</details>
