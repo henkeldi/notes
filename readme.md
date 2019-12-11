@@ -29,11 +29,11 @@
 * [Trajectory Generator](simulation-technology/trajectory-generator.md)
 * [PyBullet](simulation-technology/pybullet.md)
 
-### OpenGL
+### Computer Graphics
 
-* [PyOpenGL](./opengl/pyopengl.md)
-* [Cyglfw 3](./opengl/pyglfw3.md)
-* [EGL Offscreen Context](./opengl/egl.md)
+* [PyOpenGL](./computer-graphics/pyopengl.md)
+* [Cyglfw 3](./computer-graphics/pyglfw3.md)
+* [EGL Offscreen Context](./computer-graphics/egl.md)
 
 ### Matplotlib
 
