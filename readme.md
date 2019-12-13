@@ -31,6 +31,7 @@
 
 ### Computer Graphics
 
+* [OpenGL](./computer-graphics/opengl)
 * [PyOpenGL](./computer-graphics/pyopengl.md)
 * [Cyglfw 3](./computer-graphics/pyglfw3.md)
 * [EGL Offscreen Context](./computer-graphics/egl.md)
