@@ -189,4 +189,4 @@ glfwTerminate();
 
 # Source
 
-* [Example Code Khronos]((https://www.khronos.org/opengl/wiki/Example_Code)
+* [Example Code Khronos](https://www.khronos.org/opengl/wiki/Example_Code)
