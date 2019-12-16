@@ -61,6 +61,7 @@
 
 ### C++
 
+* [Basics](cpp/basics.md)
 * [Template](cpp/template.md)
-* [C++](cpp/cpp.md)
+* [Standard Library](cpp/std-lib.md)
 * [CMake](cpp/cmake.md)
