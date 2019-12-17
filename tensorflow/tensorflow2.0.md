@@ -217,13 +217,6 @@ model.fit(mnist_train, epochs=5,
           metrics=['accuracy'])
 ```
 
-## Measure time
-```python
-
-timeit.timeit(lambda: lstm_cell(input, state), number=10)
-```
-
-
 ## Useful links
 * [TensorFlow 2.0 Alpha](https://www.tensorflow.org/alpha)
 * [Tensorflow 2.0 Documentation](https://www.tensorflow.org/r2.0)

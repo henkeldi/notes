@@ -65,3 +65,7 @@
 * [Template](cpp/template.md)
 * [Standard Library](cpp/std-lib.md)
 * [CMake](cpp/cmake.md)
+
+### Python
+
+* [Code snippets](python/code-snippets.md)
