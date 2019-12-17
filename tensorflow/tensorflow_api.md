@@ -1,11 +1,55 @@
 
 # Tensorflow API C++
 
-**Building the library:**
+## Prerequisites
+
+
+<details><summary>Bazel</summary>
+
+* Check which version tensorflow needs [here](https://www.tensorflow.org/install/source#gpu).
 
 ```bash
-bazel build --config=cuda --config=v2 //tensorflow:libtensorflow_cc.so
+wget https://github.com/bazelbuild/bazel/releases/download/0.27.2/bazel-0.27.2-dist.zip
+unzip bazel-0.27.2-dist.zip -d bazel-0.27.2-dist
+cd bazel-0.27.2-dist
+./compile.sh
 ```
+</details>
+
+<details><summary>Tensorflow</summary>
+
+```bash
+wget https://github.com/tensorflow/tensorflow/archive/v2.1.0-rc1.tar.gz
+tar xvf v2.1.0-rc1.tar.gz
+cd v2.1.0-rc1
+
+export TF_PYTHON_VERSION='python3.6'
+export TF_NEED_GCP=0
+export TF_NEED_HDFS=1
+export TF_NEED_S3=0
+export TF_NEED_CUDA=1
+export TF_CUDA_VERSION=10.1
+export TF_CUDNN_VERSION=7
+export TF_NEED_TENSORRT=1
+export CC_OPT_FLAGS='-mavx'
+export PYTHON_BIN_PATH=$(which ${TF_PYTHON_VERSION})
+export PYTHON_LIB_PATH=/usr/local/lib/${TF_PYTHON_VERSION}/dist-packages
+export LD_LIBRARY_PATH="/usr/local/cuda:/usr/local/cuda/lib64"
+export TF_CUDA_COMPUTE_CAPABILITIES=5.2
+export TF_ENABLE_XLA=1
+export TF_NEED_OPENCL_SYCL=0
+export TF_NEED_ROCM=0
+export TF_NEED_CUDA=1
+export TF_NEED_TENSORRT=1
+export TF_CUDA_CLANG=0
+export GCC_HOST_COMPILER_PATH=/usr/bin/gcc
+export TF_SET_ANDROID_WORKSPACE=0
+
+./configure
+
+bazel build --config=monolithic --config=opt --config=v2 --config=cuda --config=noaws --config=nogcp --config=nonccl //tensorflow:libtensorflow_cc.so
+```
+</details>
 
 **main.cpp:**
 
