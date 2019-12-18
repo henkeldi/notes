@@ -77,7 +77,7 @@ if (isCompiled == GL_FALSE) {
     glGetShaderInfoLog(shader, maxLength, &maxLength, &infoLog[0]);
     glDeleteShader(shader);
     std::cerr << "Shader compilation failed:" << std::endl;
-    std::cerr << std::string(begin(infoLog), end(infoLog) << std::endl;
+    std::cerr << std::string(begin(infoLog), end(infoLog)) << std::endl;
     std::abort();
 }
 ```
