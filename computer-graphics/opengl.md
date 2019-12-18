@@ -4,12 +4,18 @@
 ## Includes
 
 ```cpp
-#include "GLFW/glfw3.h"
 #include "GL/glew.h"
 #include "GL/gl.h"
+#include "GLFW/glfw3.h"
 ```
 
-## Create a window
+## Compile
+
+```bash
+g++ main.cpp -o main -lglfw -lGL -lGLEW
+```
+
+## Initialization
 
 ```cpp
 if (!glfwInit()) {
@@ -21,6 +27,13 @@ GLFWmonitor* monitor = fullscreen? glfwGetPrimaryMonitor(): nullptr;
 GLFWwindow* window = glfwCreateWindow(window_width, window_height, "Title", monitor, nullptr);
 if (!window) {
     std::cerr << "Could not open window with GLFW3" << std::endl;
+    std::abort();
+}
+
+glfwMakeContextCurrent(window);
+
+if (glewInit() != GLEW_OK) {
+    std::cerr << "GlewInit failed" << std::endl;
     std::abort();
 }
 ```
