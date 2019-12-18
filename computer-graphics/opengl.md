@@ -15,6 +15,11 @@
 g++ main.cpp -o main -lglfw -lGL -lGLEW
 ```
 
+If loading textures using OpenCV add:
+```
+-lopencv_imgcodecs -lopencv_core
+```
+
 ## Initialization
 
 ```cpp
@@ -36,6 +41,26 @@ if (glewInit() != GLEW_OK) {
     std::cerr << "GlewInit failed" << std::endl;
     std::abort();
 }
+```
+
+## Window Callbacks
+
+```c++
+void window_size_callback(GLFWwindow* window, int width, int height) {
+}
+glfwSetWindowSizeCallback(window, window_size_callback);
+```
+
+## Create program (shortcut)
+
+* Use [shader.cpp](./code/shader.cpp) and [shader.h](./code/shader.h)
+
+```
+#include "shader.h"
+
+Shader shader({"shader.vs", "shader.frag"});
+shader.Compile();
+shader.Use();
 ```
 
 ## Create program
