@@ -12,6 +12,11 @@
 ## Create a window
 
 ```cpp
+if (!glfwInit()) {
+    std::cerr << "Could not start GLFW3" << std::endl;
+    std::abort();
+}
+
 GLFWmonitor* monitor = fullscreen? glfwGetPrimaryMonitor(): nullptr;
 GLFWwindow* window = glfwCreateWindow(window_width, window_height, "Title", monitor, nullptr);
 if (!window) {
