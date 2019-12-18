@@ -51,9 +51,11 @@ void window_size_callback(GLFWwindow* window, int width, int height) {
 glfwSetWindowSizeCallback(window, window_size_callback);
 ```
 
-## Create program (shortcut)
+## Create program
 
-* Use [shader.cpp](./code/shader.cpp) and [shader.h](./code/shader.h)
+### With helper (recommended):
+
+* Use [shader.h](./code/shader.h) and [shader.cpp](./code/shader.cpp)
 
 ```c++
 #include "shader.h"
@@ -63,7 +65,31 @@ shader.Compile();
 shader.Use();
 ```
 
-## Create program
+### Without helper:
+
+<details><summary>Create shader</summary>
+
+```cpp
+auto shader = glCreateShader(type);
+glShaderSource(shader, 1, &shader_code, nullptr);
+glCompileShader(shader);
+GLint isCompiled = 0;
+glGetShaderiv(shader, GL_COMPILE_STATUS, &isCompiled);
+if (isCompiled == GL_FALSE) {
+    GLint maxLength = 0;
+    glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &maxLength);
+    std::vector<GLchar> infoLog(maxLength);
+    glGetShaderInfoLog(shader, maxLength, &maxLength, &infoLog[0]);
+    glDeleteShader(shader);
+    std::cerr << "Shader compilation failed:" << std::endl;
+    std::cerr << std::string(begin(infoLog), end(infoLog)) << std::endl;
+    std::abort();
+}
+```
+
+</details>
+
+<details><summary>Create program</summary>
 
 ```cpp
 auto program = glCreateProgram();
@@ -87,25 +113,7 @@ glDeleteShader(fragment_shader);
 glUseProgram(program);
 ```
 
-## Create shader
-
-```cpp
-auto shader = glCreateShader(type);
-glShaderSource(shader, 1, &shader_code, nullptr);
-glCompileShader(shader);
-GLint isCompiled = 0;
-glGetShaderiv(shader, GL_COMPILE_STATUS, &isCompiled);
-if (isCompiled == GL_FALSE) {
-    GLint maxLength = 0;
-    glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &maxLength);
-    std::vector<GLchar> infoLog(maxLength);
-    glGetShaderInfoLog(shader, maxLength, &maxLength, &infoLog[0]);
-    glDeleteShader(shader);
-    std::cerr << "Shader compilation failed:" << std::endl;
-    std::cerr << std::string(begin(infoLog), end(infoLog)) << std::endl;
-    std::abort();
-}
-```
+</details>
 
 ## Vertex shader
 
