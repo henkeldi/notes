@@ -55,7 +55,7 @@ glfwSetWindowSizeCallback(window, window_size_callback);
 
 * Use [shader.cpp](./code/shader.cpp) and [shader.h](./code/shader.h)
 
-```
+```c++
 #include "shader.h"
 
 Shader shader({"shader.vs", "shader.frag"});
