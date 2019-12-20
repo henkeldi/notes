@@ -33,3 +33,18 @@ int main() {
     return 0;
 }
 ```
+
+Output:
+
+```bash
+Thread: 1 i = 3
+Thread: 1 i = 4
+Thread: 1 i = 5
+Thread: 3 i = 8
+Thread: 3 i = 9
+Thread: 0 i = 0
+Thread: 0 i = 1
+Thread: 0 i = 2
+Thread: 2 i = 6
+Thread: 2 i = 7
+```
