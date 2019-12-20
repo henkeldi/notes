@@ -65,6 +65,7 @@
 * [Template](cpp/template.md)
 * [Standard Library](cpp/std-lib.md)
 * [CMake](cpp/cmake.md)
+* [OpenMP](cpp/openmp.md)
 
 ### Python
 
