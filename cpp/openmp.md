@@ -29,7 +29,12 @@ int main() {
         unsigned int num_cpu_threads = omp_get_num_threads();
         #pragma omp for
         for (int i = 0; i < 10; i++) {
-            std::cout << "Thread: " << cpu_thread_id << " / " << num_cpu_threads << "; i = " << i << std::endl;
+            std::cout << "Thread: " 
+                      << cpu_thread_id
+                      << " / "
+                      << num_cpu_threads
+                      << "; i = "
+                      << i << std::endl;
         }
     }
     return 0;
