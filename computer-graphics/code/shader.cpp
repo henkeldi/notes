@@ -19,12 +19,7 @@ void Shader::Compile() {
     auto dot_index = path.rfind(".");
     auto suffix = path.substr(dot_index+1, path.length());
     if (kSuffixToShaderLookup.find(suffix) == kSuffixToShaderLookup.end()) {
-      std::cerr << "Invalid shader suffix: " << suffix << std::endl;
-      std::cerr << "Please use one of the following:" << std::endl;
-      for (const auto& suffix_to_type : kSuffixToShaderLookup) {
-        std::cout << suffix_to_type.first << std::endl;
-      }
-      std::abort();
+      throw std::runtime_error("Invalid shader suffix: " + suffix);
     }
     auto type = kSuffixToShaderLookup.at(suffix);
     auto shader = doCompile(path, type);
@@ -39,16 +34,15 @@ void Shader::Compile() {
       std::vector<GLchar> infoLog(maxLength);
       glGetProgramInfoLog(program_, maxLength, &maxLength, &infoLog[0]);
       glDeleteProgram(program_);
-      std::cerr << "Program linking failed:" << std::endl;
-      std::cerr << std::string(begin(infoLog), end(infoLog)) << std::endl;
-      std::abort();
+      throw std::runtime_error("Program linking failed: \n\n" +
+        std::string(begin(infoLog), end(infoLog)));
   }
 }
 
 GLuint Shader::doCompile(const std::string& path, const GLuint type) {
   auto shader = glCreateShader(type);
   auto shader_code = readFile(path);
-  const char *shader_code_ptr = shader_code.c_str();
+  const char *shader_code_ptr = shader_code.data();
   glShaderSource(shader, 1, &shader_code_ptr, nullptr);
   glCompileShader(shader);
   GLint isCompiled = 0;
@@ -59,26 +53,23 @@ GLuint Shader::doCompile(const std::string& path, const GLuint type) {
       std::vector<GLchar> infoLog(maxLength);
       glGetShaderInfoLog(shader, maxLength, &maxLength, &infoLog[0]);
       glDeleteShader(shader);
-      std::cerr << "Shader compilation failed:" << std::endl;
-      std::cerr << std::string(begin(infoLog), end(infoLog)) << std::endl;
-      std::abort();
+      throw std::runtime_error("Shader compilation failed: " +
+        std::string(begin(infoLog), end(infoLog)));
   }
   return shader;
 }
 
-const std::string Shader::readFile(const std::string& path) {
-  std::ifstream ifs{path};
-  if (!ifs) {
-    std::cerr << "Couldn't open [" << path << "] for reading." << std::endl;
-    std::abort();
+const std::vector<char> Shader::readFile(const std::string& path) {
+  std::ifstream ifs(path, std::ios::ate | std::ios::binary);
+  if (!ifs.is_open()) {
+    throw std::runtime_error("Failed to open " + path + " for reading.");
   }
-  std::string line;
-  std::ostringstream oss;
-  while (std::getline(ifs, line)) {
-    oss << line << "\n";
-  }
+  size_t fileSize = (size_t) ifs.tellg();
+  std::vector<char> buffer(fileSize);
+  ifs.seekg(0);
+  ifs.read(buffer.data(), fileSize);
   ifs.close();
-  return oss.str();
+  return buffer;
 }
 
 void Shader::Use() {
