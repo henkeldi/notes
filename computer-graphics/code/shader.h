@@ -24,7 +24,7 @@ class Shader {
     {"cs", GL_COMPUTE_SHADER},
   };
   GLuint doCompile(const std::string& path, const GLuint type);
-  const std::vector<char> Shader::readFile(const std::string& path);
+  const std::vector<char> readFile(const std::string& path);
 };
 
 #endif  // SHADER_H_
