@@ -53,7 +53,7 @@ GLuint Shader::doCompile(const std::string& path, const GLuint type) {
       std::vector<GLchar> infoLog(maxLength);
       glGetShaderInfoLog(shader, maxLength, &maxLength, &infoLog[0]);
       glDeleteShader(shader);
-      throw std::runtime_error("Shader compilation failed: " +
+      throw std::runtime_error("("+ path +"): Shader compilation failed: " +
         std::string(begin(infoLog), end(infoLog)));
   }
   return shader;
