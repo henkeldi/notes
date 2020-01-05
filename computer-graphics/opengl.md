@@ -15,9 +15,10 @@
 g++ main.cpp -o main -lglfw -lGL -lGLEW
 ```
 
-If loading textures using OpenCV add:
+For loading textures ([stb_image.h](https://raw.githubusercontent.com/nothings/stb/master/stb_image.h)):
 ```
--lopencv_imgcodecs -lopencv_core
+#define STB_IMAGE_IMPLEMENTATION
+#include <stb_image.h>
 ```
 
 ## Initialization
@@ -183,22 +184,20 @@ void main(void) {
 GLuint tex_id;
 GLuint64 handle;
 
+int texWidth, texHeight, texChannels;
+stbi_uc* pixels = stbi_load("path/to/texture.jpg", &texWidth, &texHeight, &texChannels, STBI_rgb_alpha);
+
 glCreateTextures(GL_TEXTURE_2D, 1, &tex_id);
-
-glTextureStorage2D(tex_id, 1, GL_RGB8, img.cols, img.rows);
-
+glTextureStorage2D(tex_id, 1, GL_RGB8, texWidth, texHeight);
 glTextureParameteri(tex_id, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 glTextureParameteri(tex_id, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 glTextureParameteri(tex_id, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 glTextureParameteri(tex_id, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
-// #include "opencv2/opencv.hpp"
-auto img = cv::imread("path/to/image.png");
-
 glTextureSubImage2D(tex_id, /* level */ 0, /* offsetX */ 0, /* offsetY */ 0,
-    img.cols, img.rows, GL_BGR, GL_UNSIGNED_BYTE, img.data);
+    texWidth, texHeight, GL_RGBA, GL_UNSIGNED_BYTE, img.data);
 
-auto handle = glGetTextureHandleNV(tex_id);
+handle = glGetTextureHandleNV(tex_id);
 glMakeTextureHandleResidentNV(handle);
 
 GLuint handles_buffer;
