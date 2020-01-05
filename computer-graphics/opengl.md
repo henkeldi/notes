@@ -195,7 +195,7 @@ glTextureParameteri(tex_id, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 glTextureParameteri(tex_id, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
 glTextureSubImage2D(tex_id, /* level */ 0, /* offsetX */ 0, /* offsetY */ 0,
-    texWidth, texHeight, GL_RGBA, GL_UNSIGNED_BYTE, img.data);
+    texWidth, texHeight, GL_RGBA, GL_UNSIGNED_BYTE, pixels);
 
 handle = glGetTextureHandleNV(tex_id);
 glMakeTextureHandleResidentNV(handle);
