@@ -1,8 +1,8 @@
 
 ## Install Tensorflow 2.0
 ```bash
-pip install tensorflow-gpu==2.1.0rc1
-pip install -U tensorflow-datasets
+pip3 install tensorflow==2.1.0
+pip3 install -U tensorflow-datasets
 ```
 
 ## Tutorials
