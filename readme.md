@@ -8,6 +8,7 @@
 * [Edge TPU](tensorflow/edge-tpu.md)
 * [GANs](deep-learning/gans.md)
 * [BERT](deep-learning/BERT.md)
+* [NLP](deep-learning/npl.md)
 
 ### Robotics
 
