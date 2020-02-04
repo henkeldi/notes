@@ -57,6 +57,17 @@ it('should pay', async () =>{
 });
 ```
 
+Extract data
+
+```javascript
+await page.waitForXPath("/html/body/div/a/@title", {timeout: 1000});
+const aTags = await page.$x('/html/body/div/a');
+for (const aTag of aTags) {
+  let title = await page.evaluate(aTag => aTag.title, aTag);
+  console.log(title);
+}
+```
+
 # Source
 
 [Modern Web Testing and Automation with Puppeteer](https://www.youtube.com/watch?v=MbnATLCuKI4)
