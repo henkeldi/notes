@@ -9,9 +9,11 @@
 * [GANs](deep-learning/gans.md)
 * [BERT](deep-learning/BERT.md)
 * [NLP](deep-learning/nlp.md)
+* [ASR](deep-learning/asr.md)
 
 ### Robotics
 
+* [Mechanical Design](mechanical-design/cs235.md)
 * [ROS 1.0](ros/ros-1.0.md)
 * [ROS 2.0](ros/ros-2.0.md)
 * [Control Theory](./robotics/control.md)
@@ -36,10 +38,6 @@
 * [PyOpenGL](./computer-graphics/pyopengl.md)
 * [Cyglfw 3](./computer-graphics/pyglfw3.md)
 * [EGL Offscreen Context](./computer-graphics/egl.md)
-
-### Matplotlib
-
-* [Examples](./matplotlib/matplotlib.md)
 
 ### Android
 
@@ -71,3 +69,4 @@
 ### Python
 
 * [Code snippets](python/code-snippets.md)
+* [Matplotlib Examples](./matplotlib/matplotlib.md)
