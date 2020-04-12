@@ -11,6 +11,10 @@
 * [NLP](deep-learning/nlp.md)
 * [ASR](deep-learning/asr.md)
 
+### Microcontroller
+
+* [Sipeed Longan Nano](microcontroller/longan-nano.md)
+
 ### Robotics
 
 * [Mechanical Design](mechanical-design/cs235.md)
@@ -34,6 +38,7 @@
 
 ### Computer Graphics
 
+* [Vulkan](./computer-graphics/vulkan.md)
 * [OpenGL](./computer-graphics/opengl.md)
 * [PyOpenGL](./computer-graphics/pyopengl.md)
 * [Cyglfw 3](./computer-graphics/pyglfw3.md)
