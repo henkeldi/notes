@@ -13,7 +13,7 @@
 
 ### Microcontroller
 
-* [Sipeed Longan Nano](microcontroller/longan-nano.md)
+* [STM32F103C8T6 Dev Board](microcontroller/STM32F103C8T6.md)
 
 ### Robotics
 
