@@ -31,6 +31,44 @@ glfwTerminate();
 ```
 </details>
 
+<details><summary>Instance</summary>
+
+```c++
+#include <vulkan/vulkan.h>
+#include <stdexcept>
+#define APP_SHORT_NAME "my_app_name"
+// [...]
+VkApplicationInfo app_info = {};
+app_info.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
+app_info.pNext = nullptr;
+app_info.pApplicationName = APP_SHORT_NAME;
+app_info.applicationVersion = VK_MAKE_VERSION(1, 0, 0);
+app_info.pEngineName = APP_SHORT_NAME;
+app_info.engineVersion = VK_MAKE_VERSION(1, 0, 0);
+app_info.apiVersion = VK_API_VERSION_1_1;
+
+VkInstanceCreateInfo inst_info = {};
+inst_info.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
+inst_info.pNext = nullptr;
+inst_info.flags = 0;
+inst_info.pApplicationInfo = &app_info;
+inst_info.enabledExtensionCount = 0;
+inst_info.ppEnabledExtensionNames = nullptr;
+inst_info.enabledLayerCount = 0;
+inst_info.ppEnabledLayerNames = nullptr;
+
+VkInstance instance;
+VkResult res = vkCreateInstance(&inst_info, nullptr, &instance);
+if (res != VK_SUCCESS) {
+    throw std::runtime_error("Failed to create instance!");
+}
+// [...]
+vkDestroyInstance(instance, nullptr);
+```
+
+</details>
+
 # Source
 
 * [VulkanSamples Utils](https://github.com/LunarG/VulkanSamples/blob/master/API-Samples/utils/util_init.cpp)
+* [LunarG Vulkan Samples](https://github.com/LunarG/VulkanSamples)
