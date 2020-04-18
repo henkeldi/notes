@@ -13,7 +13,7 @@ sudo apt install libglfw3-dev
 g++ main.cpp -o main -lvulkan -lglfw -std=c++17
 ```
 
-## Usage
+## Use
 
 <details><summary>Window</summary>
 
@@ -35,7 +35,7 @@ glfwTerminate();
 
 ```c++
 #include <vulkan/vulkan.h>
-#include <stdexcept>
+#include <cassert>
 #define APP_SHORT_NAME "my_app_name"
 // [...]
 VkApplicationInfo app_info = {};
@@ -65,10 +65,23 @@ if (res != VK_SUCCESS) {
 // [...]
 vkDestroyInstance(instance, nullptr);
 ```
-
 </details>
 
-# Source
+<details><summary>Enumerate Devices</summary>
 
+```c++
+std::vector<VkPhysicalDevice> gpus;
+uint32_t gpu_count = -1;
+res = vkEnumeratePhysicalDevices(instance, &gpu_count, nullptr);
+assert(gpu_count);
+gpus.resize(gpu_count);
+res = vkEnumeratePhysicalDevices(instance, &gpu_count, gpus.data());
+assert(!res && gpu_count >= 1);
+```
+</details>
+
+## Source
+
+* [Vulkan Tutorial](https://vulkan-tutorial.com/)
 * [VulkanSamples Utils](https://github.com/LunarG/VulkanSamples/blob/master/API-Samples/utils/util_init.cpp)
 * [LunarG Vulkan Samples](https://github.com/LunarG/VulkanSamples)
