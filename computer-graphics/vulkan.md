@@ -70,6 +70,8 @@ vkDestroyInstance(instance, nullptr);
 <details><summary>Enumerate Devices</summary>
 
 ```c++
+#include <vector>
+// [...]
 std::vector<VkPhysicalDevice> gpus;
 uint32_t gpu_count = -1;
 res = vkEnumeratePhysicalDevices(instance, &gpu_count, nullptr);
