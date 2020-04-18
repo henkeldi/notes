@@ -59,9 +59,7 @@ inst_info.ppEnabledLayerNames = nullptr;
 
 VkInstance instance;
 VkResult res = vkCreateInstance(&inst_info, nullptr, &instance);
-if (res != VK_SUCCESS) {
-    throw std::runtime_error("Failed to create instance!");
-}
+assert(!res);
 // [...]
 vkDestroyInstance(instance, nullptr);
 ```
