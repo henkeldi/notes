@@ -59,7 +59,7 @@ inst_info.ppEnabledLayerNames = nullptr;
 
 VkInstance instance;
 VkResult res = vkCreateInstance(&inst_info, nullptr, &instance);
-assert(!res);
+assert(res == VK_SUCCESS);
 // [...]
 vkDestroyInstance(instance, nullptr);
 ```
@@ -77,6 +77,53 @@ assert(gpu_count);
 gpus.resize(gpu_count);
 res = vkEnumeratePhysicalDevices(instance, &gpu_count, gpus.data());
 assert(!res && gpu_count >= 1);
+```
+</details>
+
+<details><summary>Init Device</summary>
+
+```c++
+std::vector<VkQueueFamilyProperties> queue_props;
+uint32_t queue_family_count = -1;
+vkGetPhysicalDeviceQueueFamilyProperties(gpus[0], &queue_family_count, nullptr);
+assert(queue_family_count >= 1);
+queue_props.resize(queue_family_count);
+vkGetPhysicalDeviceQueueFamilyProperties(gpus[0], &queue_family_count, queue_props.data());
+
+VkDeviceQueueCreateInfo queue_info = {};
+bool found = false;
+for (size_t i = 0; i < queue_family_count; i++) {
+    if (queue_props[i].queueFlags & VK_QUEUE_GRAPHICS_BIT) {
+        queue_info.queueFamilyIndex = i;
+        found = true;
+        break;
+    }
+}
+assert(found);
+assert(queue_family_count >= 1);
+
+float queue_priorities[1] = {0.0};
+queue_info.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
+queue_info.pNext = nullptr;
+queue_info.queueCount = 1;
+queue_info.pQueuePriorities = queue_priorities;
+
+VkDeviceCreateInfo device_info = {};
+device_info.sType = VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO;
+device_info.pNext = nullptr;
+device_info.queueCreateInfoCount = 1;
+device_info.pQueueCreateInfos = &queue_info;
+device_info.enabledExtensionCount = 0;
+device_info.ppEnabledExtensionNames = nullptr;
+device_info.enabledLayerCount = 0;
+device_info.ppEnabledLayerNames = nullptr;
+device_info.pEnabledFeatures = nullptr;
+
+VkDevice device;
+res = vkCreateDevice(gpus[0], &device_info, nullptr, &device);
+assert(res == VK_SUCCESS);
+// [...]
+vkDestroyDevice(device, nullptr);
 ```
 </details>
 
