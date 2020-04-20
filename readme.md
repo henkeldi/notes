@@ -10,6 +10,7 @@
 * [BERT](deep-learning/BERT.md)
 * [NLP](deep-learning/nlp.md)
 * [ASR](deep-learning/asr.md)
+* [Reading papers](deep-learning/reading-papers.md)
 
 ### Microcontroller
 
