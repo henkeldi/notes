@@ -80,7 +80,7 @@ assert(!res && gpu_count >= 1);
 ```
 </details>
 
-<details><summary>Init Device</summary>
+<details><summary>Device</summary>
 
 ```c++
 std::vector<VkQueueFamilyProperties> queue_props;
@@ -124,6 +124,34 @@ res = vkCreateDevice(gpus[0], &device_info, nullptr, &device);
 assert(res == VK_SUCCESS);
 // [...]
 vkDestroyDevice(device, nullptr);
+```
+</details>
+
+<details><summary>Command buffer</summary>
+
+```c++
+VkCommandPoolCreateInfo cmd_pool_info = {};
+cmd_pool_info.sType = VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO;
+cmd_pool_info.pNext = nullptr;
+cmd_pool_info.queueFamilyIndex = queue_info.queueFamilyIndex;
+cmd_pool_info.flags = 0;
+
+VkCommandPool cmd_pool;
+res = vkCreateCommandPool(device, &cmd_pool_info, nullptr, &cmd_pool);
+assert(res == VK_SUCCESS);
+VkCommandBufferAllocateInfo cmd_buf_info = {};
+cmd_buf_info.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
+cmd_buf_info.pNext = nullptr;
+cmd_buf_info.commandPool = cmd_pool;
+cmd_buf_info.level = VK_COMMAND_BUFFER_LEVEL_PRIMARY;
+cmd_buf_info.commandBufferCount = 1;
+
+VkCommandBuffer cmd_bufs[1];
+res = vkAllocateCommandBuffers(device, &cmd_buf_info, cmd_bufs);
+assert(res == VK_SUCCESS);
+// [...]
+vkFreeCommandBuffers(device, cmd_pool, 1, cmd_bufs);
+vkDestroyCommandPool(device, cmd_pool, nullptr);
 ```
 </details>
 
