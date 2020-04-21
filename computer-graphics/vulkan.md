@@ -253,6 +253,8 @@ vkDestroySurfaceKHR(instance, surface, nullptr);
 </details>
 
 <details><summary>Surface (Android)</summary>
+
+```c++
 assert(Android_application != nullptr);
 auto fpCreateAndroidSurfaceKHR =
     reinterpret_cast<PFN_vkCreateAndroidSurfaceKHR>(vkGetInstanceProcAddr(instance, "vkCreateAndroidSurfaceKHR"));
@@ -267,6 +269,7 @@ createInfo.window = Android_application->window;
 VkSurfaceKHR surface;
 res = fpCreateAndroidSurfaceKHR(instance, &createInfo, nullptr, &surface);
 assert(res == VK_SUCCESS);
+```
 </details>
 
 ## Source
