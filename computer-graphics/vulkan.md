@@ -103,7 +103,6 @@ while ((e = xcb_wait_for_event(connection))) {
 
 std::vector<const char*> instance_extension_names = {
     VK_KHR_XCB_SURFACE_EXTENSION_NAME
-    VK_KHR_SWAPCHAIN_EXTENSION_NAME
 };
 // [...]
 xcb_destroy_window(connection, window);
@@ -132,8 +131,8 @@ inst_info.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
 inst_info.pNext = nullptr;
 inst_info.flags = 0;
 inst_info.pApplicationInfo = &app_info;
-inst_info.enabledExtensionCount = static_cast<uint32_t>(extensions.size());
-inst_info.ppEnabledExtensionNames = extensions.data();
+inst_info.enabledExtensionCount = instance_extension_names.size();
+inst_info.ppEnabledExtensionNames = instance_extension_names.data();
 inst_info.enabledLayerCount = 0;
 inst_info.ppEnabledLayerNames = nullptr;
 
