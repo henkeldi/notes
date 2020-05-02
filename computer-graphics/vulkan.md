@@ -36,7 +36,7 @@ auto window = glfwCreateWindow(
 uint32_t glfwExtensionCount;
 auto glfwExtensions = glfwGetRequiredInstanceExtensions(
     &glfwExtensionCount);
-std::vector<const char*> extensions(
+std::vector<const char*> instance_extension_names(
     glfwExtensions, glfwExtensions + glfwExtensionCount);
 // [...]
 glfwDestroyWindow(window);
@@ -100,6 +100,11 @@ xcb_generic_event_t *e;
 while ((e = xcb_wait_for_event(connection))) {
     if ((e->response_type & ~0x80) == XCB_EXPOSE) break;
 }
+
+std::vector<const char*> instance_extension_names = {
+    VK_KHR_XCB_SURFACE_EXTENSION_NAME
+    VK_KHR_SWAPCHAIN_EXTENSION_NAME
+};
 // [...]
 xcb_destroy_window(connection, window);
 xcb_disconnect(connection);
