@@ -31,8 +31,13 @@ Linker flag: **-lglfw**
 // [...]
 glfwInit();
 glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
-window = glfwCreateWindow(
-    width, height, "<Window Title>", nullptr, nullptr);
+auto window = glfwCreateWindow(
+    500, 500, "<Window Title>", nullptr, nullptr);
+uint32_t glfwExtensionCount;
+auto glfwExtensions = glfwGetRequiredInstanceExtensions(
+    &glfwExtensionCount);
+std::vector<const char*> extensions(
+    glfwExtensions, glfwExtensions + glfwExtensionCount);
 // [...]
 glfwDestroyWindow(window);
 glfwTerminate();
@@ -122,8 +127,8 @@ inst_info.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
 inst_info.pNext = nullptr;
 inst_info.flags = 0;
 inst_info.pApplicationInfo = &app_info;
-inst_info.enabledExtensionCount = 0;
-inst_info.ppEnabledExtensionNames = nullptr;
+inst_info.enabledExtensionCount = static_cast<uint32_t>(extensions.size());
+inst_info.ppEnabledExtensionNames = extensions.data();
 inst_info.enabledLayerCount = 0;
 inst_info.ppEnabledLayerNames = nullptr;
 
@@ -230,7 +235,7 @@ vkDestroyCommandPool(device, cmd_pool, nullptr);
 
 ```c++
 VkSurfaceKHR surface;
-res = glfwCreateWindowSurface(instance_, window_, nullptr, &surface)
+res = glfwCreateWindowSurface(instance, window, nullptr, &surface);
 assert(res == VK_SUCCESS);
 ```
 </details>
