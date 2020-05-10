@@ -22,7 +22,7 @@ import neural_structured_learning as nsl
 nsl.tools.pack_nbrs('/tmp/train.tfr', '', '/tmp/graph.tsv', '/tmp/nsl_train.tfr', add_undirected_edges=True, max_nbrs=3)
 
 # Extract features required for the model from the input.
-train_dataset, test_dataset = make_datasets('/tmp/nsl_train.tfr', '/tmp/test.tfr)
+train_dataset, test_dataset = make_datasets('/tmp/nsl_train.tfr', '/tmp/test.tfr')
 
 # Create a base model -- sequential, functional, or subclass.
 base_model = tf.keras.Sequential(...)
@@ -39,7 +39,6 @@ graph_model.compile(
     metrics=['accuracy'])
 graph_model.fit(train_dataset, epochs=5)
 graph_model.evaluate(test_dataset)
-)
 ```
 
 ## Example (Sentiment classification)
