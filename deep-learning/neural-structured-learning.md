@@ -19,7 +19,8 @@ You need:
 import neural_structured_learning as nsl
 
 # Augment training data by merging neighbors into sample features.
-nsl.tools.pack_nbrs('/tmp/train.tfr', '', '/tmp/graph.tsv', '/tmp/nsl_train.tfr', add_undirected_edges=True, max_nbrs=3)
+nsl.tools.pack_nbrs('/tmp/train.tfr', '', '/tmp/graph.tsv', 
+                    '/tmp/nsl_train.tfr', add_undirected_edges=True, max_nbrs=3)
 
 # Extract features required for the model from the input.
 train_dataset, test_dataset = make_datasets('/tmp/nsl_train.tfr', '/tmp/test.tfr')
