@@ -3,13 +3,11 @@
 
 Step 1: Have two images
 
-<img src="./images/imgA.jpg" width="256">
-<img src="./images/imgB.jpg" width="256">
+<img src="./images/out.jpg" width="512">
 
-Step 2: Select at least 8 corresponding points. [This tool](code/select_correspondances.py) will help. Example:
+Step 2: Select at least 8 corresponding points. Use [This tool](code/select_correspondances.py). Example:
 
-<img src="./images/img_drawA.jpg" width="256">
-<img src="./images/img_drawB.jpg" width="256">
+<img src="./images/out_drawA.jpg" width="512">
 
 <details>
 
