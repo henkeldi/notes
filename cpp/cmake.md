@@ -15,6 +15,12 @@ CMake GUI:
 sudo apt-get -y install cmake-qt-gui
 ```
 
+Release Build:
+
+```bash
+cmake -DCMAKE_BUILD_TYPE=Release ..
+```
+
 ## Example
 
 *CMakeLists.txt:*
