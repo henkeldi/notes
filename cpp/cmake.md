@@ -1,7 +1,7 @@
 
 # CMake
 
-## Installation
+## Install
 
 CMake:
 
@@ -13,12 +13,6 @@ CMake GUI:
 
 ```bash
 sudo apt-get -y install cmake-qt-gui
-```
-
-Release Build:
-
-```bash
-cmake -DCMAKE_BUILD_TYPE=Release ..
 ```
 
 ## Example
@@ -82,6 +76,10 @@ Build
 
 ```bash
 cmake --build build -DCMAKE_BUILD_TYPE={Debug, Release}
+```
+
+```bash
+cmake -DCMAKE_BUILD_TYPE=Release ..
 ```
 
 ## Project Layout
