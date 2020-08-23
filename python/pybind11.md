@@ -6,7 +6,7 @@
 
 # Use
 
-*main.py*
+**main.py**
 
 ```python
 import numpy as np
@@ -16,7 +16,7 @@ import lib_cpp
 lib_cpp.func(np.ones((5, 5)))
 ```
 
-*main.cpp*
+**main.cpp**
 
 ```c++
 #include <pybind11/pybind11.h>
@@ -30,7 +30,7 @@ PYBIND11_MODULE(lib_cpp, m) {
 }
 ```
 
-*CMakeLists.txt*
+**CMakeLists.txt**
 
 ```cmake
 project(lib)
