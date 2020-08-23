@@ -20,7 +20,7 @@ import lib_cpp
 lib_cpp.func(np.ones((5, 5)))
 ```
 
-**main.cpp**
+**lib.cpp**
 
 ```c++
 #include <pybind11/pybind11.h>
