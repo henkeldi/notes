@@ -1,8 +1,12 @@
 # pybind11
 
-# Download
+# Install
 
-* [Link](https://github.com/pybind/pybind11/releases)
+* [Releases](https://github.com/pybind/pybind11/releases)
+
+```bash
+wget https://github.com/pybind/pybind11/archive/v2.5.0.tar.gz
+```
 
 # Use
 
