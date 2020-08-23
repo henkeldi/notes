@@ -16,8 +16,8 @@ wget https://github.com/pybind/pybind11/archive/v2.5.0.tar.gz
 import numpy as np
 
 import lib_cpp
-
-lib_cpp.func(np.ones((5, 5)))
+input1 = np.ones((5, 5))
+lib_cpp.func(input1)
 ```
 
 **lib.cpp**
