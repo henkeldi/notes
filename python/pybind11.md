@@ -1,6 +1,6 @@
 # pybind11
 
-# Install
+## Install
 
 * [Releases](https://github.com/pybind/pybind11/releases)
 
@@ -8,7 +8,7 @@
 wget https://github.com/pybind/pybind11/archive/v2.5.0.tar.gz
 ```
 
-# Use
+## Use
 
 **main.py**
 
