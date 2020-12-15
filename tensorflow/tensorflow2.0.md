@@ -1,7 +1,7 @@
 
 ## Install Tensorflow 2.0
 ```bash
-pip3 install tensorflow==2.1.0
+pip3 install tensorflow
 pip3 install -U tensorflow-datasets
 ```
 
