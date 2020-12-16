@@ -4,17 +4,19 @@
 **lexer.test.ts**
 
 ```ts
+import * as lexer from 'lexer';
+
 test('', ()=>{
-    
+    lexer.lex();
 })
 ```
 
 **lexer.ts**
 
 ```ts
-test('', ()=>{
-    
-})
+export const lex = () => {
+
+}
 ```
 
 **package.json**
