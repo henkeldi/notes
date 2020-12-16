@@ -6,11 +6,11 @@
 Step 1: Define tokens
 
 | Type  | Example | Regex |
-| ------------- | ------------- |
-| ID | temp data | [a-z][a-z0-9]* |
-| NUM | 13 43 | [0-9]+ |
-| COMMA | , | , |
-| LPAREN | ( | ( |
+| ------|------ | ------------- |
+| `ID` | temp data | [a-zA-Z][a-zA-Z0-9]* |
+| `NUM` | 13 43 | [0-9]+ |
+| `COMMA` | , | , |
+| `LPAREN` | ( | ( |
 
 # Reference
 
