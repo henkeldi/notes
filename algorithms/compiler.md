@@ -17,7 +17,7 @@ Step 2: Define skip regexes
 | Type  | Example | Regex |
 | ------|------ | ------------- |
 | Comment | # bla blubb | '#' [a-z]* '\n' |
-| Whitespace | ' ' '\t' '\n' | (' '|'\t'|'\n')+ |
+| Whitespace | ' ' '\t' '\n' | (' '\|'\t'\|'\n')+ |
 
 # Reference
 
