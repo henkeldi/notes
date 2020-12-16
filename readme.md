@@ -61,6 +61,7 @@
 - [Calling a REST API](web/api-call.md)
 - [Puppeteer](web/puppeteer.md)
 - [Web Assembly](web/web-assembly.md)
+- [Jest](web/jest.md)
 
 ### Database
 
