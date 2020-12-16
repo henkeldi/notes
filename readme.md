@@ -79,3 +79,7 @@
 - [Code snippets](python/code-snippets.md)
 - [pybind11](python/pybind11.md)
 - [Matplotlib Examples](./matplotlib/matplotlib.md)
+
+### Algorithms
+
+- [Compiler](algorithms/compiler.md)
