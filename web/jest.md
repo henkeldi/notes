@@ -4,5 +4,5 @@
 Generate boilerplate code:
 
 ```bash
-npx tsdx create ts-jest`
+npx tsdx create ts-jest
 ```
