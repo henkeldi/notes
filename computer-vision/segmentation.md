@@ -1,6 +1,8 @@
 
 # Segmentation
 
+![](images/segmentation-example.gif)
+
 ## Installation
 
 ```bash
