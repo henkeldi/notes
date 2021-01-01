@@ -92,10 +92,10 @@ add_test(NAME main_test COMMAND test)
 **Build**
 
 ```bash
-$ mkdir build
-$ cd build
-$ cmake ..
-$ make
+mkdir build
+cd build
+cmake ..
+make
 ```
 **Run Tests**
 
