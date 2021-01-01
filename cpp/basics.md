@@ -122,6 +122,21 @@ auto f = async(g);
 f.get();
 ```
 
+### Map
+
+```c++
+#include <unordered_map>
+
+std::unordered_map <string, vector<string>> my_dictionary;
+
+if (my_dictionary.find(key) == my_dictionary.end()) {
+    my_dictionary[key] = vector<string> {"foo", "bar"};
+}
+```
+
+* [Include guards](https://github.com/isocpp/CppCoreGuidelines/blob/master/CppCoreGuidelines.md#Rs-guards)
+
 # Source
 
 * [A Tour of C++ Second Edition](http://www.stroustrup.com/tour2.html)
+* [Build automation software](https://en.wikipedia.org/wiki/List_of_build_automation_software)
