@@ -20,48 +20,17 @@ sudo apt-get -y install cmake-qt-gui
 *CMakeLists.txt:*
 
 ```cmake
-cmake_minimum_required(VERSION 2.8)
-project(foo)
+cmake_minimum_required(VERSION 3.11.3)
 
-# C-Only project
-project(foo C)
+set(CMAKE_CXX_STANDARD 17)
 
-# Specify project version
 project(Foo VERSION 1.2.7)
 
-# Access project version
-
-message("  Version: ${PROJECT_VERSION}")
-message("  Version (alt): ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}")
-
-#output: Version 1.2.7
-#        Version (alt): 1.2.7
-
-set(condition_b "NO")
-
-if(condition_b)
-    message("Hello")
-else()
-    message("Bye")
-endif()
-
-# List
-
-set(elements a b c)
-
-foreach(element elements)
-    message("element=${element}")
-endforeach()
-
-include_directories(
-    include)
-
-link_directories(
-    lib)
+include_directories(include)
+link_directories(lib)
 
 add_executable(my_program src/my_program.cpp)
-target_link_libraries(my_program
-    some_lib)
+target_link_libraries(my_program some_lib)
 
 add_subdirectory(foo)
 ```
@@ -75,11 +44,13 @@ cmake -H -B build
 Build
 
 ```bash
-cmake --build build -DCMAKE_BUILD_TYPE={Debug, Release}
+cmake --build build -DCMAKE_BUILD_TYPE=Debug
+cmake --build build -DCMAKE_BUILD_TYPE=Release
 ```
 
 ```bash
 cmake -DCMAKE_BUILD_TYPE=Release ..
+cmake -DCMAKE_BUILD_TYPE=Debug ..
 ```
 
 ## Project Layout
