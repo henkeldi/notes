@@ -3,6 +3,8 @@
 
 ## Usage
 
+### Basic setup
+
 **src/adder.cpp**
 
 ```c++
@@ -89,7 +91,7 @@ target_link_libraries(test gtest_main)
 add_test(NAME main_test COMMAND test)
 ```
 
-**Build**
+### Build
 
 ```bash
 mkdir build
@@ -97,7 +99,8 @@ cd build
 cmake ..
 make
 ```
-**Run Tests**
+
+### Run
 
 ```bash
 $ ./test
