@@ -89,9 +89,18 @@ target_link_libraries(test gtest_main)
 add_test(NAME main_test COMMAND test)
 ```
 
-**Output:**
+**Build**
 
 ```bash
+$ mkdir build
+$ cd build
+$ cmake ..
+$ make
+```
+**Run Tests**
+
+```bash
+$ ./test
 Running main() from /tmp/tmp/build/googletest-src/googletest/src/gtest_main.cc
 [==========] Running 1 test from 1 test suite.
 [----------] Global test environment set-up.
