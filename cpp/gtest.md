@@ -5,7 +5,7 @@
 
 ### Basic setup
 
-**src/adder.cpp**
+*src/adder.cpp*
 
 ```c++
 int add(int a, int b) {
@@ -13,7 +13,7 @@ int add(int a, int b) {
 }
 ```
 
-**src/adder.h**
+*src/adder.h*
 
 ```c++
 #ifndef ADDER_H
@@ -24,7 +24,7 @@ int add(int a, int b);
 #endif
 ```
 
-**test/test_adder.cpp**
+*test/test_adder.cpp*
 
 ```c++
 #include "gtest/gtest.h"
@@ -36,7 +36,7 @@ TEST(AdderTest, TestAddFunction) {
 }
 ```
 
-**CMakeLists.txt.in**
+*CMakeLists.txt.in*
 
 ```
 cmake_minimum_required(VERSION 2.8.12)
@@ -56,7 +56,7 @@ ExternalProject_Add(googletest
 )
 ```
 
-**CMakeLists.txt**
+*CMakeLists.txt*
 
 ```cmake
 cmake_minimum_required(VERSION 3.11.3)
