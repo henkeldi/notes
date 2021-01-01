@@ -75,6 +75,7 @@
 - [Standard Library](cpp/std-lib.md)
 - [CMake](cpp/cmake.md)
 - [OpenMP](cpp/openmp.md)
+- [GTest](cpp/gtest.md)
 
 ### Python
 
