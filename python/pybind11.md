@@ -5,7 +5,7 @@
 * [Releases](https://github.com/pybind/pybind11/releases)
 
 ```bash
-https://github.com/pybind/pybind11/archive/v2.6.1.tar.gz
+wget https://github.com/pybind/pybind11/archive/v2.6.1.tar.gz
 ```
 
 ## Use
