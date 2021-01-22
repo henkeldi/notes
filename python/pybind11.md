@@ -43,7 +43,7 @@ cmake_minimum_required(VERSION 3.10)
 
 find_package(Eigen3 REQUIRED)
 
-add_subdirectory(pybind11-2.5.0)
+add_subdirectory(pybind11-2.6.1)
 pybind11_add_module(lib_cpp lib.cpp)
 target_link_libraries(lib_cpp
     PRIVATE
