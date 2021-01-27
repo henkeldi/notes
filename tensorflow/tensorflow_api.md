@@ -3,6 +3,21 @@
 
 ## Prerequisites
 
+<details><summary>CUDA</summary>
+
+```bash
+https://developer.nvidia.com/Cuda-Toolkit-archive
+```
+
+</details>
+
+<details><summary>CUDNN</summary>
+
+```bash
+https://developer.nvidia.com/rdp/cudnn-download
+```
+
+</details>
 
 <details><summary>Bazel</summary>
 
