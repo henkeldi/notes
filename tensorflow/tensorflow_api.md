@@ -6,12 +6,14 @@
 
 <details><summary>Bazel</summary>
 
-* Check which version tensorflow needs [here](https://www.tensorflow.org/install/source#gpu). Bazel releases are [here](https://github.com/bazelbuild/bazel/releases)
+* Check which version tensorflow needs [here](https://www.tensorflow.org/install/source#gpu). Bazel releases are [here](https://github.com/bazelbuild/bazel/releases).
+
+```sudo apt install openjdk-14-jdk```
 
 ```bash
 wget https://github.com/bazelbuild/bazel/releases/download/3.1.0/bazel-3.1.0-dist.zip
 unzip bazel-3.1.0-dist.zip -d bazel-3.1.0-dist
-cd bazel-3.1.0
+cd bazel-3.1.0-dist
 ./compile.sh
 ```
 </details>
