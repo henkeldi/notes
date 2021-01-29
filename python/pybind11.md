@@ -31,7 +31,13 @@ void func(const Eigen::MatrixXd& input1) {
 }
 
 PYBIND11_MODULE(lib_cpp, m) {
-    m.def("func", &func);
+  namespace py = pybind11;
+  using namespace pybind11::literals;
+  
+  m.def("func", &func);
+  
+  py::class_<ImageViewer>(m, "Viewer")
+    .def(py::init<int, int, std::string>(), "width"_a=800, "height"_a=600, "title"_a="");
 }
 ```
 

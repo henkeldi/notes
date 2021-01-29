@@ -32,6 +32,9 @@ R_0_f = R0.T.dot(Rf)
 
 ```python
 vector, angle = toEuler(R_0_f)
+
+# or
+vector, angle = transforms3d.axangles.mat2axangle(R_0_f)
 ```
 
 ```python
@@ -47,7 +50,7 @@ def toEuler(R):
     return vector, angle
 ```
 
-2. Interpolate between 0 and angle
+2. Interpolate between 0 and angle and do `rot = R0.dot(toRotationMatrix(vector, current_angle))`
 
 3. To get intermediate values for the rotation matrix use:
 
@@ -59,6 +62,10 @@ def toRotationMatrix(vector, angle):
     return np.array([[c+x*x*(1-c), x*y*(1-c)-z*s, x*z*(1-c)+y*s],
                      [y*x*(1-c)+z*s, c+y*y*(1-c), y*z*(1-c)-x*s],
                      [z*x*(1-c)-y*s, z*y*(1-c)+x*s, c+z*z*(1-c)]])
+
+# or
+
+rot = transforms3d.axangles.axangle2mat(vector, angle)
 ```
 
 ### Piecewise linear trajectory with parabolic transitions
