@@ -77,8 +77,13 @@
 - [OpenMP](cpp/openmp.md)
 - [GTest](cpp/gtest.md)
 
+### Linux
+
+- [Bash](linux/bash-scripting.md)
+
 ### Python
 
+- [Automation](python/automation.md)
 - [Code snippets](python/code-snippets.md)
 - [pybind11](python/pybind11.md)
 - [Matplotlib Examples](./matplotlib/matplotlib.md)
