@@ -140,3 +140,4 @@ if (my_dictionary.find(key) == my_dictionary.end()) {
 
 * [A Tour of C++ Second Edition](http://www.stroustrup.com/tour2.html)
 * [Build automation software](https://en.wikipedia.org/wiki/List_of_build_automation_software)
+* [Awesome C++](https://awesomecpp.com/)
