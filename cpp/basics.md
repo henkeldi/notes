@@ -344,3 +344,4 @@ auto random = std::bind(std::uniform_real_distribution<double>(0,1), generator);
 * [C++ Core Guidlines: Naming and layout rules](http://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#nl-naming-and-layout-rules)
 * [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html)
 * [Mozilla Coding Style: C/C++ practices](https://developer.mozilla.org/en-US/docs/Mozilla/Developer_guide/Coding_Style#CC_practices)
+* [Awesome C++](https://awesomecpp.com/)
