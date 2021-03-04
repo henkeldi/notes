@@ -320,6 +320,16 @@ std::mt19937 generator(rd());
 auto random = std::bind(std::uniform_real_distribution<double>(0,1), generator);
 ```
 
+## Argv <-> Vector
+
+```c++
+std::vector<std::string> args {""};
+std::vector<char*> argv(args.size());
+std::transform(args.begin(), args.end(), argv.begin(), [](std::string& str) { return const_cast<char*>(str.c_str()); });
+
+std::vector<std::string> arguments(argv + 1, argv + argc);
+```
+
 ## Include Guards
 
 * [Include guards](https://github.com/isocpp/CppCoreGuidelines/blob/master/CppCoreGuidelines.md#Rs-guards)
