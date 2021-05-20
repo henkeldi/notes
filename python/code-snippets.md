@@ -39,8 +39,8 @@ args = parser.parse_args()
 ## Get location of current file
 
 ```python
-import os
-os.path.abspath(os.path.dirname(__file__))
+import pathlib
+pathlib.Path(__file__).parent.absolute()
 ```
 
 ## Measure execution time
