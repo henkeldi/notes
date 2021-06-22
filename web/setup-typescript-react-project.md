@@ -5,25 +5,31 @@
 
 ```json
 {
-  "name": "<package-name>",
-  "description": "<description>",
-  "version": "0.0.1",
-  "author": "<autor>",
-  "license": "ISC",
-  "scripts": {
-    "dev": "node fuse"
-  },
-  "dependencies": {
-    "react": "^16.8.4",
-    "react-dom": "^16.8.4"
-  },
-  "devDependencies": {
-    "@types/react": "^16.8.8",
-    "@types/react-dom": "^16.8.2",
-    "fuse-box": "^3.7.1",
-    "tslint": "^5.14.0",
-    "typescript": "^3.3.3333"
-  }
+    "name": "<package-name>",
+    "description": "",
+    "version": "0.0.1",
+    "scripts": {
+        "dev": "./node_modules/.bin/webpack serve --open --config webpack.dev.js",
+        "build": "./node_modules/.bin/webpack --config webpack.prod.js"
+    },
+    "author": "<author>",
+    "license": "ISC",
+    "dependencies": {
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2"
+    },
+    "devDependencies": {
+        "@types/react": "^17.0.11",
+        "@types/react-dom": "^17.0.8",
+        "terser-webpack-plugin": "^5.1.3",
+        "ts-loader": "^9.2.3",
+        "tslint": "^6.1.3",
+        "typescript": "^4.3.4",
+        "webpack": "^5.40.0",
+        "webpack-cli": "^4.7.2",
+        "webpack-dev-server": "^3.11.2",
+        "webpack-merge": "^5.8.0"
+    }
 }
 ```
 
@@ -41,6 +47,7 @@
         "noImplicitAny": true,
         "removeComments": true,
         "preserveConstEnums": true,
+        "allowSyntheticDefaultImports": true,
         "strict": true,
         "sourceMap": true,
         "module": "esnext",
@@ -56,39 +63,67 @@
 }
 ```
 
-#### fuse.js
+#### webpack.common.js
 
 ```javascript
-const { FuseBox,
-    CSSPlugin,
-    WebIndexPlugin,
-    ImageBase64Plugin,
-} = require("fuse-box");
+const path = require('path');
 
-const fuse = FuseBox.init({
-    homeDir: "src",
-    output: "public/$name.js",
-    target: "browser@es2018",
-    sourceMaps: true,
-    plugins: [
-        WebIndexPlugin({
-            title: "<Webpage Title>",
-            template: "src/index.html",
-        }),
-        CSSPlugin(),
-        ImageBase64Plugin()
-    ]
-});
-
-fuse.bundle('vendor').instructions('~ **/**.tsx');
-fuse.bundle("bundle").instructions(`!> [index.tsx]`).watch().hmr();
-
-fuse.dev();
-
-fuse.run();
+module.exports = {
+    entry: {
+        bundle: path.join(__dirname, 'src', 'index.tsx')
+    },
+    output: {
+        path: path.join(__dirname, 'public', 'js')
+    },
+    resolve: {
+        extensions: ['.ts', '.tsx', '.js', '.json']
+    },
+    module: {
+        rules: [
+            {
+                test: /\.tsx?$/,
+                loader: 'ts-loader'
+            }
+        ]
+    }
+}
 ```
 
-#### src/index.html
+#### webpack.dev.js
+
+```javascript
+const { merge } = require('webpack-merge');
+const path = require('path');
+const common = require('./webpack.common.js');
+
+module.exports = merge(common, {
+    mode: 'development',
+    devtool: 'inline-source-map',
+    devServer: {
+        contentBase: path.join(__dirname, 'public'),
+        publicPath: '/js'
+    },
+})
+```
+
+#### webpack.prod.js
+
+```javascript
+const { merge } = require('webpack-merge');
+const TerserPlugin = require('terser-webpack-plugin');
+const common = require('./webpack.common.js');
+
+module.exports = merge(common, {
+    mode: 'production',
+    devtool: 'source-map',
+    optimization: {
+        minimizer: [new TerserPlugin()],
+    },
+})
+```
+
+
+#### public/index.html
 
 ```html
 <!DOCTYPE html>
@@ -99,12 +134,12 @@ fuse.run();
     name="viewport"
     content="width=device-width, initial-scale=1, shrink-to-fit=no"
   />
-  <title>$title</title>
+  <title>My Page</title>
 </head>
 <body>
   <noscript>You need to enable JavaScript to run this app.</noscript>
   <div id="root"></div>
-  $bundles
+  <script src="js/bundle.js"></script>
 </body>
 </html>
 ```
@@ -112,15 +147,13 @@ fuse.run();
 #### src/index.tsx
 
 ```typescript
-import * as ReactDOM from "react-dom";
-import * as React from "react";
+import ReactDOM from "react-dom";
+import React from "react";
 
-import './styles/main.css'
-
-import SubComponent from './subcomponent'
+import { SubComponent } from './subcomponent'
 
 ReactDOM.render(
-  <SubComponent />,
+  <SubComponent title="World"/>,
   document.getElementById('root')
 )
 ```
@@ -128,37 +161,16 @@ ReactDOM.render(
 #### src/subcomponent.tsx
 
 ```typescript
-import * as React from 'react';
+import React from 'react'
 
-class SubComponent extends React.Component<{}, {}> {
-
-  render() {
-    return <h1>Hello World</h1>;
-  }
-
+type SubComponentProps = {
+    title:string,
 }
 
-export default SubComponent;
-```
-
-
-#### styles/main.css
-
-```css
-body {
-    padding: 100px;
-    background: white;
+export const SubComponent = ({title}: SubComponentProps) => {
+    return <h1>Hello { title }</h1>
 }
 ```
-#### images.d.ts
-```
-declare module "*.jpeg";
-declare module "*.jpg";
-declare module "*.gif";
-declare module "*.png";
-declare module "*.svg";
-```
-
 
 #### Install dependencies
 
@@ -166,7 +178,7 @@ declare module "*.svg";
 yarn install
 ```
 
-#### Run dev server
+#### Run webpack dev server
 
 ```bash
 yarn dev
